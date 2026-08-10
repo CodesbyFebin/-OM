@@ -1,0 +1,6 @@
+{
+  "name": "OM — Personal AI Cloud",
+  "description": "The private AI operating universe for people who live online — unifying tabs, spaces, notes, files, code, agents, and personal memory.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

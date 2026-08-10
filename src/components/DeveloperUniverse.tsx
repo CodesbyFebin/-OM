@@ -154,7 +154,7 @@ export const DeveloperUniverse: React.FC<DeveloperUniverseProps> = ({
 
       {/* 1. Terminal View - Bento Grid Block */}
       {activeTab === "terminal" && (
-        <div className="bg-slate-950/90 rounded-3xl border border-slate-800/80 p-5 font-mono text-xs text-slate-200 h-[520px] flex flex-col justify-between shadow-2xl backdrop-blur-md">
+        <div className="glass-panel rounded-3xl p-5 font-mono text-xs text-slate-200 h-[520px] flex flex-col justify-between">
           {/* Terminal Output Header */}
           <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 text-slate-400 text-[11px]">
             <div className="flex items-center gap-2">

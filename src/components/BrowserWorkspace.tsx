@@ -155,7 +155,7 @@ export const BrowserWorkspace: React.FC<BrowserWorkspaceProps> = ({
       {activeTab && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Simulated Browser Webpage View - Bento Card */}
-          <div className="lg:col-span-2 bg-slate-900/90 rounded-3xl border border-slate-800/80 overflow-hidden flex flex-col h-[620px] shadow-xl backdrop-blur-md">
+          <div className="lg:col-span-2 glass-panel rounded-3xl overflow-hidden flex flex-col h-[620px]">
             {/* Address bar */}
             <div className="px-4 py-3 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between text-xs text-slate-300">
               <div className="flex items-center gap-3 flex-1 mr-4 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800 truncate font-mono">

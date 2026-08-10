@@ -118,7 +118,7 @@ export const QuickCaptureModal: React.FC<QuickCaptureModalProps> = ({
       {/* Modal Backdrop */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-lg rounded-3xl bg-slate-900 border border-indigo-500/30 p-6 sm:p-8 text-slate-100 shadow-2xl space-y-5">
+          <div className="relative w-full max-w-lg rounded-3xl glass-panel-golden p-6 sm:p-8 text-slate-100 space-y-5">
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-3 border-b border-slate-800">
               <div className="flex items-center gap-2.5">

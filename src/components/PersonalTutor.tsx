@@ -183,7 +183,7 @@ export const PersonalTutor: React.FC<PersonalTutorProps> = ({
       </div>
 
       {/* Subject & Controls Bento Bar */}
-      <div className="bg-slate-900/90 rounded-3xl border border-slate-800/80 p-6 space-y-5 shadow-xl backdrop-blur-md">
+      <div className="glass-panel rounded-3xl p-6 space-y-5">
         <div className="space-y-3">
           <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
             Select or Type Any Subject

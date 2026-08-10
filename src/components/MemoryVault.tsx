@@ -111,7 +111,7 @@ export const MemoryVault: React.FC<MemoryVaultProps> = ({
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 bg-slate-900/80 p-4 rounded-2xl border border-slate-800">
+      <div className="flex flex-col sm:flex-row items-center gap-4 glass-panel p-4 rounded-2xl">
         <div className="relative flex-1 w-full">
           <Search className="absolute left-3.5 top-2.5 w-4 h-4 text-slate-400" />
           <input
@@ -119,7 +119,7 @@ export const MemoryVault: React.FC<MemoryVaultProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search memory contents or entity tags (e.g. architecture, express, theme)..."
-            className="w-full pl-10 pr-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+            className="w-full pl-10 pr-3 py-2 bg-slate-950/80 border border-amber-500/20 rounded-xl text-xs text-slate-100 placeholder-slate-400 focus:outline-none focus:border-amber-500/60"
           />
         </div>
 
@@ -127,7 +127,7 @@ export const MemoryVault: React.FC<MemoryVaultProps> = ({
           <select
             value={selectedScope}
             onChange={(e) => setSelectedScope(e.target.value)}
-            className="bg-slate-950 border border-slate-800 text-xs text-slate-200 rounded-xl px-3 py-2 focus:outline-none"
+            className="bg-slate-950/80 border border-amber-500/20 text-xs text-slate-200 rounded-xl px-3 py-2 focus:outline-none"
           >
             <option value="all">All Scopes</option>
             <option value="space">Space Scope</option>
@@ -139,8 +139,8 @@ export const MemoryVault: React.FC<MemoryVaultProps> = ({
             onClick={() => setOnlyDecisions(!onlyDecisions)}
             className={`px-3 py-2 rounded-xl text-xs font-medium border transition shrink-0 cursor-pointer ${
               onlyDecisions
-                ? "bg-purple-600/30 text-purple-300 border-purple-500/40"
-                : "bg-slate-950 text-slate-400 border-slate-800 hover:text-slate-200"
+                ? "bg-amber-500/30 text-amber-300 border-amber-500/40 font-bold"
+                : "bg-slate-950/80 text-slate-400 border-amber-500/20 hover:text-slate-200"
             }`}
           >
             Decisions Only
@@ -159,7 +159,7 @@ export const MemoryVault: React.FC<MemoryVaultProps> = ({
           filteredMemories.map((mem) => (
             <div
               key={mem.id}
-              className="p-5 sm:p-6 rounded-3xl bg-slate-900/90 border border-slate-800/80 space-y-3.5 flex flex-col justify-between hover:border-slate-700 transition-all shadow-xl backdrop-blur-md hover:scale-[1.01]"
+              className="p-5 sm:p-6 rounded-3xl glass-panel space-y-3.5 flex flex-col justify-between hover:scale-[1.01] transition-all"
             >
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">

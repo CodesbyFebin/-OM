@@ -10,6 +10,9 @@ import {
   Sparkles,
   Rocket,
   Trash2,
+  Lock,
+  Link,
+  AlertCircle,
 } from "lucide-react";
 import { TaskItem, NoteItem, Mission, Space } from "../types";
 
@@ -19,7 +22,8 @@ interface MissionsTasksProps {
   notes: NoteItem[];
   missions: Mission[];
   onToggleTask: (taskId: string) => void;
-  onAddTask: (title: string, priority: 'p1' | 'p2' | 'p3', category: string) => void;
+  onAddTask: (title: string, priority: 'p1' | 'p2' | 'p3', category: string, dependencies?: string[]) => void;
+  onUpdateTaskDependencies?: (taskId: string, dependencies: string[]) => void;
   onAddNote: (title: string, content: string, tags: string[]) => void;
   onDeleteNote: (noteId: string) => void;
 }
@@ -31,6 +35,7 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
   missions,
   onToggleTask,
   onAddTask,
+  onUpdateTaskDependencies = (_taskId: string, _dependencies: string[]) => {},
   onAddNote,
   onDeleteNote,
 }) => {
@@ -41,6 +46,10 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskPriority, setNewTaskPriority] = useState<'p1' | 'p2' | 'p3'>("p1");
   const [newTaskCategory, setNewTaskCategory] = useState("General");
+  const [newTaskDependencies, setNewTaskDependencies] = useState<string[]>([]);
+
+  // Dependency Linking Editor State
+  const [editingDependenciesTaskId, setEditingDependenciesTaskId] = useState<string | null>(null);
 
   // Add Note State
   const [showNoteModal, setShowNoteModal] = useState(false);
@@ -52,12 +61,40 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
   const spaceNotes = notes.filter((n) => n.spaceId === activeSpace.id);
   const spaceMissions = missions.filter((m) => m.spaceId === activeSpace.id);
 
+  const isTaskBlocked = (task: TaskItem) => {
+    if (!task.dependencies || task.dependencies.length === 0) return false;
+    return task.dependencies.some((depId) => {
+      const depTask = tasks.find((t) => t.id === depId);
+      return depTask && !depTask.completed;
+    });
+  };
+
+  const getUncompletedDependencyNames = (task: TaskItem) => {
+    if (!task.dependencies) return [];
+    return task.dependencies
+      .map((depId) => tasks.find((t) => t.id === depId))
+      .filter((t): t is TaskItem => !!t && !t.completed)
+      .map((t) => t.title);
+  };
+
   const handleTaskSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTaskTitle.trim()) return;
-    onAddTask(newTaskTitle.trim(), newTaskPriority, newTaskCategory);
+    onAddTask(
+      newTaskTitle.trim(),
+      newTaskPriority,
+      newTaskCategory,
+      newTaskDependencies.length > 0 ? newTaskDependencies : undefined
+    );
     setNewTaskTitle("");
+    setNewTaskDependencies([]);
     setShowTaskModal(false);
+  };
+
+  const handleToggleDependencyInModal = (taskId: string) => {
+    setNewTaskDependencies((prev) =>
+      prev.includes(taskId) ? prev.filter((id) => id !== taskId) : [...prev, taskId]
+    );
   };
 
   const handleNoteSubmit = (e: React.FormEvent) => {
@@ -143,41 +180,95 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
             {spaceTasks.length === 0 ? (
               <div className="py-12 text-center text-slate-400 text-xs">No tasks in this space.</div>
             ) : (
-              spaceTasks.map((task) => (
-                <div
-                  key={task.id}
-                  onClick={() => onToggleTask(task.id)}
-                  className={`p-4 rounded-xl border transition flex items-center justify-between cursor-pointer ${
-                    task.completed
-                      ? "bg-slate-900/40 border-slate-800 text-slate-500 line-through"
-                      : "bg-slate-900 border-slate-800 hover:border-slate-700 text-slate-200"
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    {task.completed ? (
-                      <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                    ) : (
-                      <Circle className="w-5 h-5 text-slate-500 shrink-0" />
-                    )}
-                    <div>
-                      <div className="text-xs font-semibold">{task.title}</div>
-                      <div className="text-[10px] text-slate-400 font-mono">Category: {task.category}</div>
-                    </div>
-                  </div>
+              spaceTasks.map((task) => {
+                const blocked = isTaskBlocked(task);
+                const blockedByNames = getUncompletedDependencyNames(task);
 
-                  <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
-                      task.priority === "p1"
-                        ? "bg-red-500/20 text-red-300 border border-red-500/30"
-                        : task.priority === "p2"
-                        ? "bg-amber-500/20 text-amber-300 border border-amber-500/30"
-                        : "bg-slate-800 text-slate-400"
+                return (
+                  <div
+                    key={task.id}
+                    className={`p-4 rounded-xl border transition space-y-2 ${
+                      task.completed
+                        ? "bg-slate-900/40 border-slate-800 text-slate-500 line-through"
+                        : blocked
+                        ? "bg-slate-900/90 border-rose-500/40 text-slate-200 shadow-md"
+                        : "bg-slate-900 border-slate-800 hover:border-slate-700 text-slate-200"
                     }`}
                   >
-                    {task.priority.toUpperCase()}
-                  </span>
-                </div>
-              ))
+                    <div className="flex items-center justify-between">
+                      <div
+                        onClick={() => onToggleTask(task.id)}
+                        className="flex items-center gap-3 cursor-pointer flex-1"
+                      >
+                        {task.completed ? (
+                          <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                        ) : blocked ? (
+                          <Lock className="w-5 h-5 text-rose-400 shrink-0" />
+                        ) : (
+                          <Circle className="w-5 h-5 text-slate-500 shrink-0" />
+                        )}
+                        <div>
+                          <div className="text-xs font-semibold flex items-center gap-2">
+                            <span>{task.title}</span>
+                            {blocked && (
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 flex items-center gap-1">
+                                <AlertCircle className="w-3 h-3 text-rose-400" />
+                                <span>BLOCKED</span>
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-[10px] text-slate-400 font-mono flex items-center gap-2 mt-0.5">
+                            <span>Category: {task.category}</span>
+                            {task.dependencies && task.dependencies.length > 0 && (
+                              <span className="text-indigo-400 flex items-center gap-1">
+                                <Link className="w-3 h-3" />
+                                {task.dependencies.length} prerequisite(s)
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setEditingDependenciesTaskId(task.id);
+                          }}
+                          className="px-2.5 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-indigo-300 border border-slate-800 text-[10px] font-mono transition cursor-pointer flex items-center gap-1"
+                          title="Link Prerequisite Task Dependencies"
+                        >
+                          <Link className="w-3 h-3 text-indigo-400" />
+                          <span>Dependencies</span>
+                        </button>
+
+                        <span
+                          className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                            task.priority === "p1"
+                              ? "bg-red-500/20 text-red-300 border border-red-500/30"
+                              : task.priority === "p2"
+                              ? "bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                              : "bg-slate-800 text-slate-400"
+                          }`}
+                        >
+                          {task.priority.toUpperCase()}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Blocked Alert Banner if blocked */}
+                    {blocked && (
+                      <div className="p-2.5 rounded-xl bg-rose-950/40 border border-rose-500/30 text-[11px] font-mono text-rose-300 flex items-center gap-2">
+                        <Lock className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                        <span>
+                          Prerequisites pending: <strong className="text-white">{blockedByNames.join(", ")}</strong>
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
             )}
           </div>
         </div>
@@ -319,6 +410,31 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
                 </div>
               </div>
 
+              {/* Prerequisite Dependencies Selector */}
+              {spaceTasks.length > 0 && (
+                <div>
+                  <label className="text-xs font-mono text-slate-400 block mb-1">
+                    Prerequisite Dependencies (Blocks this task until done)
+                  </label>
+                  <div className="max-h-32 overflow-y-auto space-y-1 bg-slate-950 p-2 rounded-xl border border-slate-800 text-xs">
+                    {spaceTasks.map((st) => (
+                      <label
+                        key={st.id}
+                        className="flex items-center gap-2 p-1.5 rounded hover:bg-slate-900 cursor-pointer text-slate-300"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={newTaskDependencies.includes(st.id)}
+                          onChange={() => handleToggleDependencyInModal(st.id)}
+                          className="rounded bg-slate-900 border-slate-700 text-indigo-600"
+                        />
+                        <span className="truncate">{st.title}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="flex items-center justify-end gap-2 pt-2">
                 <button
                   type="button"
@@ -335,6 +451,78 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Task Dependencies Linker Modal */}
+      {editingDependenciesTaskId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+          <div className="relative w-full max-w-md rounded-2xl bg-slate-900 border border-indigo-500/30 p-6 space-y-4 text-slate-100">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <Link className="w-4 h-4 text-indigo-400" />
+                <span>Link Task Prerequisites</span>
+              </h3>
+              <button
+                onClick={() => setEditingDependenciesTaskId(null)}
+                className="text-slate-400 hover:text-white"
+              >
+                ✕
+              </button>
+            </div>
+
+            <p className="text-xs text-slate-400">
+              Select tasks that must be completed before "
+              <strong className="text-slate-200">
+                {tasks.find((t) => t.id === editingDependenciesTaskId)?.title}
+              </strong>
+              " can be started.
+            </p>
+
+            <div className="max-h-48 overflow-y-auto space-y-1.5 bg-slate-950 p-2.5 rounded-2xl border border-slate-800 text-xs">
+              {spaceTasks
+                .filter((st) => st.id !== editingDependenciesTaskId)
+                .map((st) => {
+                  const targetTask = tasks.find((t) => t.id === editingDependenciesTaskId);
+                  const currentDeps = targetTask?.dependencies || [];
+                  const isChecked = currentDeps.includes(st.id);
+
+                  return (
+                    <label
+                      key={st.id}
+                      className="flex items-center justify-between p-2 rounded-xl hover:bg-slate-900 cursor-pointer text-slate-300"
+                    >
+                      <div className="flex items-center gap-2 truncate">
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => {
+                            const newDeps = isChecked
+                              ? currentDeps.filter((id) => id !== st.id)
+                              : [...currentDeps, st.id];
+                            onUpdateTaskDependencies(editingDependenciesTaskId, newDeps);
+                          }}
+                          className="rounded bg-slate-900 border-slate-700 text-indigo-600"
+                        />
+                        <span className="truncate">{st.title}</span>
+                      </div>
+                      <span className="text-[10px] font-mono text-slate-500 shrink-0">
+                        {st.completed ? "Completed" : "Pending"}
+                      </span>
+                    </label>
+                  );
+                })}
+            </div>
+
+            <div className="flex justify-end pt-2">
+              <button
+                onClick={() => setEditingDependenciesTaskId(null)}
+                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition"
+              >
+                Done
+              </button>
+            </div>
           </div>
         </div>
       )}

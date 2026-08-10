@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   LayoutDashboard,
   Layers,
@@ -11,6 +11,9 @@ import {
   Plus,
   GraduationCap,
   Flame,
+  CloudCheck,
+  CloudOff,
+  RefreshCw,
 } from "lucide-react";
 import { Space, AgentAction } from "../types";
 
@@ -31,6 +34,18 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
   onSelectSpace,
   pendingActions,
 }) => {
+  const [syncState, setSyncState] = useState<"Synced" | "Syncing..." | "Offline">("Synced");
+  const [lastSyncedTime, setLastSyncedTime] = useState<string>("Just now");
+
+  const handleManualSync = () => {
+    if (syncState === "Syncing...") return;
+    setSyncState("Syncing...");
+    setTimeout(() => {
+      setSyncState("Synced");
+      setLastSyncedTime(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+    }, 1200);
+  };
+
   const mainNav = [
     { id: "command", label: "Command Center", icon: LayoutDashboard },
     { id: "spaces", label: "Spaces & Missions", icon: Layers, count: spaces.length },
@@ -50,7 +65,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
   ];
 
   return (
-    <aside className="w-64 bg-slate-900/90 border-r border-slate-800/80 flex flex-col justify-between h-screen sticky top-0 text-slate-300 select-none backdrop-blur-xl">
+    <aside className="w-64 glass-panel border-r border-amber-500/20 flex flex-col justify-between h-screen sticky top-0 text-slate-300 select-none">
       <div className="p-4 space-y-6 overflow-y-auto">
         {/* Brand Header */}
         <div className="flex items-center gap-3 px-2 py-1">
@@ -147,6 +162,48 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
               );
             })}
           </div>
+        </div>
+      </div>
+
+      {/* Sync Status Indicator */}
+      <div className="px-4 py-2 border-t border-slate-800/80 bg-slate-950/60 font-mono text-xs">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {syncState === "Synced" && (
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-500/50" />
+            )}
+            {syncState === "Syncing..." && (
+              <RefreshCw className="w-3.5 h-3.5 text-amber-400 animate-spin" />
+            )}
+            {syncState === "Offline" && (
+              <span className="w-2 h-2 rounded-full bg-rose-500" />
+            )}
+
+            <div className="flex flex-col">
+              <span
+                className={`font-bold text-[11px] ${
+                  syncState === "Synced"
+                    ? "text-emerald-300"
+                    : syncState === "Syncing..."
+                    ? "text-amber-300"
+                    : "text-rose-400"
+                }`}
+              >
+                {syncState}
+              </span>
+              <span className="text-[9px] text-slate-500">
+                {syncState === "Synced" ? `Updated ${lastSyncedTime}` : syncState === "Syncing..." ? "Reconciling nodes..." : "Offline local backup"}
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={handleManualSync}
+            className="p-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800 transition cursor-pointer"
+            title="Trigger State Sync"
+          >
+            <RefreshCw className={`w-3 h-3 ${syncState === "Syncing..." ? "animate-spin text-amber-400" : ""}`} />
+          </button>
         </div>
       </div>
 

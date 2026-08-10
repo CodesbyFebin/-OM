@@ -233,9 +233,9 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
 
       {/* Top Banner & Quick Controls - Hero Bento Block */}
       {isEnabled("briefing") && (
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950/80 to-slate-900 p-6 sm:p-8 text-white border border-indigo-500/30 shadow-2xl backdrop-blur-xl">
+        <div className="relative overflow-hidden rounded-3xl glass-panel-golden gold-glow p-6 sm:p-8 text-white space-y-6">
           <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-1/3 -mb-10 w-72 h-72 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-1/3 -mb-10 w-72 h-72 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div className="space-y-3">
@@ -272,8 +272,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
 
           {/* Status Indicators Bar - Bento Status Tiles */}
           {isEnabled("system") && (
-            <div className="relative z-10 mt-6 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
-              <div className="flex items-center gap-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
+            <div className="relative z-10 mt-6 pt-6 border-t border-amber-500/20 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
+              <div className="flex items-center gap-3 glass-panel p-3.5 rounded-2xl">
                 <Server className="w-4 h-4 text-emerald-400 shrink-0" />
                 <div>
                   <div className="text-slate-400 text-[11px]">Core Engine</div>
@@ -281,7 +281,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
+              <div className="flex items-center gap-3 glass-panel p-3.5 rounded-2xl">
                 <Brain className="w-4 h-4 text-indigo-400 shrink-0" />
                 <div>
                   <div className="text-slate-400 text-[11px]">Model Router</div>
@@ -289,7 +289,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
+              <div className="flex items-center gap-3 glass-panel p-3.5 rounded-2xl">
                 <Cpu className="w-4 h-4 text-amber-400 shrink-0" />
                 <div>
                   <div className="text-slate-400 text-[11px]">Local AI / Ollama</div>
@@ -297,7 +297,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 bg-slate-950/60 p-3 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
+              <div className="flex items-center gap-3 glass-panel p-3.5 rounded-2xl">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                 <div>
                   <div className="text-slate-400 text-[11px]">Vault Security</div>
@@ -312,17 +312,17 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
       {/* Omni-Command Bar - Bento Input Block */}
       <form onSubmit={handleSearchSubmit} className="relative">
         <div className="relative flex items-center">
-          <Search className="absolute left-4 w-5 h-5 text-indigo-400 pointer-events-none" />
+          <Search className="absolute left-4 w-5 h-5 text-amber-400 pointer-events-none" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Universal AI Search across notes, tasks, memory, emails, web history..."
-            className="w-full pl-12 pr-32 py-4 rounded-2xl bg-slate-900/90 text-slate-100 placeholder-slate-400 border border-indigo-500/30 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 text-sm font-medium shadow-xl outline-none transition-all"
+            className="w-full pl-12 pr-36 py-4 rounded-2xl glass-panel text-slate-100 placeholder-slate-400 focus:border-amber-500/60 focus:ring-2 focus:ring-amber-500/20 text-sm font-medium shadow-xl outline-none transition-all"
           />
           <button
             type="submit"
-            className="absolute right-2.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs flex items-center gap-1.5 transition cursor-pointer shadow-md"
+            className="absolute right-2.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer shadow-md"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Universal Search</span>
@@ -353,8 +353,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
 
       {/* Weekly Insights Data Visualization Widget using Recharts */}
       {isEnabled("habits") && (
-        <div className="relative overflow-hidden rounded-3xl bg-slate-900/90 border border-emerald-500/30 p-6 shadow-xl backdrop-blur-md space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="relative overflow-hidden rounded-3xl glass-panel p-6 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-amber-500/20">
             <div className="flex items-center gap-2.5">
               <Flame className="w-5 h-5 text-amber-400" />
               <h3 className="text-base font-bold text-slate-100">
@@ -363,7 +363,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
             </div>
             <button
               onClick={() => onNavigateToView("habits")}
-              className="px-3.5 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 font-mono text-xs font-bold transition cursor-pointer flex items-center gap-1.5"
+              className="px-3.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-mono text-xs font-bold transition cursor-pointer flex items-center gap-1.5"
             >
               <span>Manage Habits Dashboard</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -378,8 +378,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Active Space Context Restoration Card - Bento Span 2 */}
         {isEnabled("spaces") && (
-          <div className="lg:col-span-2 bg-slate-900/80 rounded-3xl border border-slate-800 p-6 sm:p-7 space-y-6 shadow-xl backdrop-blur-md">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div className="lg:col-span-2 glass-panel rounded-3xl p-6 sm:p-7 space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-amber-500/20">
               <div className="flex items-center gap-3.5">
                 <div
                   className="w-11 h-11 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg"
@@ -512,8 +512,8 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
         <div className="space-y-6">
           {/* Pending Agent Approvals Bento Box */}
           {isEnabled("inbox") && (
-            <div className="bg-slate-900/80 rounded-3xl border border-slate-800 p-5 sm:p-6 space-y-4 shadow-xl backdrop-blur-md">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="glass-panel rounded-3xl p-5 sm:p-6 space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-amber-500/20">
                 <div className="flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 text-amber-400" />
                   <h3 className="text-sm font-bold text-slate-200">Unified Inbox & Agent Approvals</h3>
@@ -532,7 +532,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
                   {pendingActions.slice(0, 2).map((act) => (
                     <div
                       key={act.id}
-                      className="p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/80 space-y-2 text-xs"
+                      className="p-3.5 rounded-2xl glass-panel space-y-2 text-xs"
                     >
                       <div className="flex items-center justify-between font-semibold text-slate-200">
                         <span>{act.agentName}</span>
@@ -545,7 +545,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
                         <span className="text-[10px] text-slate-400">{act.timestamp}</span>
                         <button
                           onClick={onOpenApprovals}
-                          className="text-indigo-400 hover:text-indigo-300 font-medium text-[11px] cursor-pointer"
+                          className="text-amber-400 hover:text-amber-300 font-medium text-[11px] cursor-pointer"
                         >
                           Review Action →
                         </button>
@@ -558,7 +558,7 @@ export const CommandCenter: React.FC<CommandCenterProps> = ({
           )}
 
           {/* Quick Spaces List - Bento Side Tile */}
-          <div className="bg-slate-900/80 rounded-3xl border border-slate-800 p-5 sm:p-6 space-y-3.5 shadow-xl backdrop-blur-md">
+          <div className="glass-panel rounded-3xl p-5 sm:p-6 space-y-3.5">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
               Personal Spaces
             </h3>

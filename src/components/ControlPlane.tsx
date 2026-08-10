@@ -78,7 +78,7 @@ export const ControlPlane: React.FC<ControlPlaneProps> = ({
       </div>
 
       {/* Theme Controls & High Contrast Display Mode */}
-      <div className="p-5 rounded-3xl bg-slate-900 border border-indigo-500/30 space-y-4 shadow-xl backdrop-blur-md">
+      <div className="p-5 rounded-3xl glass-panel space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-800">
           <div className="flex items-center gap-2.5">
             <Palette className="w-5 h-5 text-indigo-400" />

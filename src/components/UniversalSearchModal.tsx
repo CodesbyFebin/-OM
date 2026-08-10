@@ -46,6 +46,7 @@ export const UniversalSearchModal: React.FC<UniversalSearchModalProps> = ({
   const [searching, setSearching] = useState(false);
   const [searchResult, setSearchResult] = useState<any | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   // Recent Searches local storage state
   const [recentSearches, setRecentSearches] = useState<string[]>(() => {
@@ -63,6 +64,26 @@ export const UniversalSearchModal: React.FC<UniversalSearchModalProps> = ({
       executeSearch(initialQuery, useWebSearch);
     }
   }, [initialQuery, isOpen]);
+
+  // Handle global keyboard shortcuts inside modal
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setSelectedIndex((prev) => prev + 1);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setSelectedIndex((prev) => Math.max(0, prev - 1));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -154,12 +175,17 @@ export const UniversalSearchModal: React.FC<UniversalSearchModalProps> = ({
             </div>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-2 rounded-2xl text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline-block px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-[10px] font-mono text-slate-400">
+              ↑↓ Navigate • Esc Exit
+            </span>
+            <button
+              onClick={onClose}
+              className="p-2 rounded-2xl text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Input */}

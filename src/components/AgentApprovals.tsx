@@ -168,7 +168,7 @@ export const AgentApprovals: React.FC<AgentApprovalsProps> = ({
               {pendingActions.map((act) => (
                 <div
                   key={act.id}
-                  className="p-6 rounded-3xl bg-slate-900/90 border border-slate-800/80 space-y-4 shadow-xl backdrop-blur-md hover:border-amber-500/30 transition-all"
+                  className="p-6 rounded-3xl glass-panel space-y-4 hover:border-amber-500/40 transition-all"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-3 border-b border-slate-800/80">
                     <div className="flex items-center gap-3">

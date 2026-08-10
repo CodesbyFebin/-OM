@@ -73,6 +73,7 @@ export interface TaskItem {
   priority: 'p1' | 'p2' | 'p3';
   dueDate: string;
   category: string;
+  dependencies?: string[];
 }
 
 export interface CalendarEvent {

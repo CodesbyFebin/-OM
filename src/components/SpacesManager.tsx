@@ -111,10 +111,10 @@ export const SpacesManager: React.FC<SpacesManagerProps> = ({
           return (
             <div
               key={sp.id}
-              className={`rounded-3xl border p-6 space-y-5 transition-all backdrop-blur-md shadow-xl ${
+              className={`rounded-3xl p-6 space-y-5 transition-all shadow-xl ${
                 isActive
-                  ? "bg-slate-900/90 border-indigo-500/60 shadow-2xl ring-1 ring-indigo-500/30"
-                  : "bg-slate-900/70 border-slate-800/80 hover:border-slate-700 hover:scale-[1.01]"
+                  ? "glass-panel-golden gold-glow ring-1 ring-amber-500/40"
+                  : "glass-panel hover:scale-[1.01]"
               }`}
             >
               <div className="flex items-start justify-between">

@@ -14,6 +14,10 @@ import { PersonalTutor } from "./components/PersonalTutor";
 import { HabitDashboard } from "./components/HabitDashboard";
 import { QuickCaptureModal } from "./components/QuickCaptureModal";
 
+import { ContextEngine } from "./core/context/ContextEngine";
+import { globalModelRouter } from "./packages/ai/ModelRouter";
+import omCosmicBg from "./assets/images/om_cosmic_bg_1786400452986.jpg";
+
 import {
   initialSpaces,
   initialMissions,
@@ -56,7 +60,7 @@ export default function App() {
   });
 
   const [activeSpaceId, setActiveSpaceId] = useState<string>(() => {
-    return localStorage.getItem("om_active_space") || "space-dev";
+    return ContextEngine.getInitialActiveSpaceId("space-dev");
   });
 
   const [missions, setMissions] = useState<Mission[]>(() => {
@@ -115,7 +119,7 @@ export default function App() {
   const [briefing, setBriefing] = useState<DailyBriefing | null>({
     greeting: "Good morning, Febin.",
     summary:
-      "Your private AI operating universe is online and synced. No security vulnerabilities detected.",
+      "Your private AI operating universe is online and synced. Context engine & ModelRouter active.",
     priorities: [
       "Review OM Production deployment logs & Express server on port 3000",
       "Complete architectural review of Space Context restoration engine",
@@ -129,7 +133,7 @@ export default function App() {
   const [universalSearchOpen, setUniversalSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Sync state to LocalStorage
+  // Sync state to LocalStorage and Capture Context Snapshots
   useEffect(() => {
     localStorage.setItem("om_spaces", JSON.stringify(spaces));
   }, [spaces]);
@@ -169,6 +173,20 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("om_daily_goals", JSON.stringify(dailyGoals));
   }, [dailyGoals]);
+
+  // ContextEngine snapshot capture
+  useEffect(() => {
+    ContextEngine.captureSnapshot({
+      activeSpaceId,
+      spaces,
+      tasks,
+      notes,
+      memoryItems,
+      missions,
+      tabs,
+      actions,
+    });
+  }, [activeSpaceId, spaces, tasks, notes, memoryItems, missions, tabs, actions]);
 
   const handleToggleGoal = (goalId: string) => {
     setDailyGoals((prev) =>
@@ -236,7 +254,18 @@ export default function App() {
   };
 
   const handleResumeUniverse = () => {
-    handleSelectSpace("space-dev");
+    const outcome = ContextEngine.restoreUniverseContext(activeSpaceId || "space-dev");
+    handleSelectSpace(outcome.targetSpaceId);
+    setBriefing((prev) =>
+      prev
+        ? { ...prev, summary: outcome.summary }
+        : {
+            greeting: "Good morning, Febin.",
+            summary: outcome.summary,
+            priorities: ["Resume active workspace missions and review pending agent approvals"],
+            systemStatus: "Zero-Knowledge Context Restored",
+          }
+    );
     setCurrentView("command");
   };
 
@@ -289,6 +318,20 @@ export default function App() {
   };
 
   const handleRunAgentTask = async (agentType: string, instruction: string) => {
+    let routerMeta;
+    try {
+      routerMeta = await globalModelRouter.complete({
+        prompt: instruction,
+        spaceContext: activeSpace.name,
+        messages: [
+          { role: "system", content: `You are OM ${agentType} agent operating inside workspace context ${activeSpace.name}.` },
+          { role: "user", content: instruction },
+        ],
+      });
+    } catch (err) {
+      console.warn("[App] ModelRouter agent execution notice:", err);
+    }
+
     const res = await fetch("/api/ai/agent-task", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -296,6 +339,8 @@ export default function App() {
         agentType,
         instruction,
         spaceContext: activeSpace.name,
+        modelUsed: routerMeta?.modelUsed || "gemini-3.6-flash",
+        privacyLevel: routerMeta?.privacyLevel || "cloud",
       }),
     });
     const data = await res.json();
@@ -309,7 +354,9 @@ export default function App() {
         type: pa.type || "terminal",
         riskLevel: pa.riskLevel || "ASK",
         command: pa.command,
-        details: pa.details || "Action drafted by agent.",
+        details: `${pa.details || "Action drafted by agent."}${
+          routerMeta ? ` [Routed via ${routerMeta.provider.toUpperCase()} (${routerMeta.modelUsed})]` : ""
+        }`,
         status: "pending",
         timestamp: "Just now",
         spaceId: activeSpaceId,
@@ -317,7 +364,7 @@ export default function App() {
       setActions((prev) => [...newActions, ...prev]);
     }
 
-    return data;
+    return { ...data, routerMeta };
   };
 
   const handleDiagnoseLog = async (logText: string) => {
@@ -428,7 +475,12 @@ export default function App() {
     );
   };
 
-  const handleAddTask = (title: string, priority: "p1" | "p2" | "p3", category: string) => {
+  const handleAddTask = (
+    title: string,
+    priority: "p1" | "p2" | "p3",
+    category: string,
+    dependencies?: string[]
+  ) => {
     const newTask: TaskItem = {
       id: `task_${Date.now()}`,
       spaceId: activeSpaceId,
@@ -437,8 +489,15 @@ export default function App() {
       priority,
       dueDate: new Date().toISOString().split("T")[0],
       category,
+      dependencies,
     };
     setTasks((prev) => [newTask, ...prev]);
+  };
+
+  const handleUpdateTaskDependencies = (taskId: string, dependencies: string[]) => {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === taskId ? { ...t, dependencies } : t))
+    );
   };
 
   // Note operations
@@ -481,21 +540,38 @@ export default function App() {
   const pendingActions = actions.filter((a) => a.status === "pending");
 
   return (
-    <div className={`flex h-screen font-sans antialiased overflow-hidden selection:bg-indigo-500 selection:text-white transition-colors duration-300 ${
-      theme === "light" ? "light-theme bg-slate-100 text-slate-900" : "bg-slate-950 text-slate-100"
-    }`}>
-      {/* Left Sidebar Navigation */}
-      <SidebarNav
-        currentView={currentView}
-        onNavigate={setCurrentView}
-        spaces={spaces}
-        activeSpace={activeSpace}
-        onSelectSpace={handleSelectSpace}
-        pendingActions={pendingActions}
-      />
+    <div
+      className={`relative flex h-screen font-sans antialiased overflow-hidden selection:bg-amber-500 selection:text-white transition-colors duration-300 ${
+        theme === "light" ? "light-theme bg-slate-100 text-slate-900" : "bg-slate-950 text-slate-100"
+      }`}
+    >
+      {/* Background Sacred Geometry Cosmic Backdrop */}
+      {theme === "dark" && (
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+          <img
+            src={omCosmicBg}
+            alt="OM Cosmic Background"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover object-center opacity-30 scale-105 filter blur-[1px]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-slate-950/95 backdrop-blur-[2px]" />
+        </div>
+      )}
 
-      {/* Main Workspace Area */}
-      <main className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6">
+      {/* Main Glassmorphic Layout Wrapper */}
+      <div className="relative z-10 flex w-full h-full">
+        {/* Left Sidebar Navigation */}
+        <SidebarNav
+          currentView={currentView}
+          onNavigate={setCurrentView}
+          spaces={spaces}
+          activeSpace={activeSpace}
+          onSelectSpace={handleSelectSpace}
+          pendingActions={pendingActions}
+        />
+
+        {/* Main Workspace Area */}
+        <main className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6">
         {currentView === "command" && (
           <CommandCenter
             activeSpace={activeSpace}
@@ -574,6 +650,7 @@ export default function App() {
             missions={missions}
             onToggleTask={handleToggleTask}
             onAddTask={handleAddTask}
+            onUpdateTaskDependencies={handleUpdateTaskDependencies}
             onAddNote={handleAddNote}
             onDeleteNote={handleDeleteNote}
           />
@@ -643,6 +720,7 @@ export default function App() {
         onAddNote={handleAddNote}
         onAddMemory={handleAddMemory}
       />
+      </div>
     </div>
   );
 }

@@ -42,7 +42,7 @@ export const MeetingQuickViewWidget: React.FC<MeetingQuickViewWidgetProps> = ({
   };
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-slate-900/90 border border-indigo-500/30 p-6 shadow-xl backdrop-blur-md space-y-4">
+    <div className="relative overflow-hidden rounded-3xl glass-panel p-6 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-slate-800">
         <div className="flex items-center gap-2.5">

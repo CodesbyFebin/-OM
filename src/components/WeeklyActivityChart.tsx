@@ -51,7 +51,7 @@ export const WeeklyActivityChart: React.FC<WeeklyActivityChartProps> = ({
   );
 
   return (
-    <div className="bg-slate-900/90 rounded-3xl border border-slate-800/80 p-6 space-y-5 shadow-xl backdrop-blur-md">
+    <div className="glass-panel rounded-3xl p-6 space-y-5">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
         <div className="flex items-center gap-2.5">

@@ -297,10 +297,10 @@ export const HabitDashboard: React.FC<HabitDashboardProps> = ({
             return (
               <div
                 key={habit.id}
-                className={`p-5 rounded-3xl border transition-all space-y-4 shadow-lg ${
+                className={`p-5 rounded-3xl transition-all space-y-4 shadow-lg ${
                   habit.completedToday
-                    ? "bg-emerald-950/20 border-emerald-500/40"
-                    : "bg-slate-950/70 border-slate-800/80 hover:border-slate-700"
+                    ? "glass-panel-golden gold-glow ring-1 ring-amber-500/40"
+                    : "glass-panel hover:scale-[1.01]"
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">

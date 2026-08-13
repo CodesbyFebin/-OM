@@ -13,8 +13,10 @@ import {
   Lock,
   Link,
   AlertCircle,
+  Activity,
 } from "lucide-react";
 import { TaskItem, NoteItem, Mission, Space } from "../types";
+import { SubAgentDecisionLog } from "./SubAgentDecisionLog";
 
 interface MissionsTasksProps {
   activeSpace: Space;
@@ -39,7 +41,7 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
   onAddNote,
   onDeleteNote,
 }) => {
-  const [activeTab, setActiveTab] = useState<"tasks" | "notes" | "missions">("tasks");
+  const [activeTab, setActiveTab] = useState<"tasks" | "notes" | "missions" | "subagent">("tasks");
 
   // Add Task State
   const [showTaskModal, setShowTaskModal] = useState(false);
@@ -155,6 +157,15 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
             }`}
           >
             Missions ({spaceMissions.length})
+          </button>
+          <button
+            onClick={() => setActiveTab("subagent")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition cursor-pointer flex items-center gap-1.5 ${
+              activeTab === "subagent" ? "bg-amber-500 text-slate-950 font-bold" : "text-amber-400 hover:text-amber-300"
+            }`}
+          >
+            <Activity className="w-3.5 h-3.5" />
+            <span>Sub-Agent Log</span>
           </button>
         </div>
       </div>
@@ -360,6 +371,10 @@ export const MissionsTasks: React.FC<MissionsTasksProps> = ({
             ))}
           </div>
         </div>
+      )}
+
+      {activeTab === "subagent" && (
+        <SubAgentDecisionLog />
       )}
 
       {/* Add Task Modal */}

@@ -1,5 +1,21 @@
 export type RiskLevel = 'READ' | 'DRAFT' | 'ASK' | 'ACT' | 'NEVER';
 
+export type OMTheme = 'cosmic-gold' | 'neon-astral' | 'calm-light';
+
+export type OMState = 'resting' | 'waking' | 'ready' | 'thinking';
+
+export type ProbeStatus = 'configured' | 'online' | 'offline' | 'connecting' | 'timed_out' | 'cors_blocked' | 'disabled' | 'not_configured';
+
+export interface SovereignStackStatus {
+  godRouter: { status: ProbeStatus; endpoint: string; model: string; fallback: string; policy: string };
+  godMemory: { status: ProbeStatus; endpoint: string; collection: string; vectorCount: number };
+  localMinio: { status: ProbeStatus; endpoint: string; bucket: string };
+  cloudS3: { status: ProbeStatus; endpoint: string; bucket: string; encryption: string };
+  web3Bridge: { status: ProbeStatus; rpcEndpoint: string; chain: string; chainId: number };
+  ipfsStorage: { status: ProbeStatus; apiEndpoint: string; version: string; pinnedCount: number };
+  edgeNode: { status: ProbeStatus; endpoint: string; hardware: string; workload: string };
+}
+
 export type MemoryScope = 'private' | 'space' | 'session' | 'team';
 
 export interface Space {

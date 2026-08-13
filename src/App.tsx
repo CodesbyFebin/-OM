@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { SidebarNav } from "./components/SidebarNav";
 import { CommandCenter } from "./components/CommandCenter";
+import { TaskWorkspace } from "./components/TaskWorkspace";
+import { RightContextPanel } from "./components/RightContextPanel";
+import { SovereignSetupModal } from "./components/SovereignSetupModal";
 import { DailyBriefingModal } from "./components/DailyBriefingModal";
 import { BrowserWorkspace } from "./components/BrowserWorkspace";
 import { SpacesManager } from "./components/SpacesManager";
@@ -13,10 +16,18 @@ import { UniversalSearchModal } from "./components/UniversalSearchModal";
 import { PersonalTutor } from "./components/PersonalTutor";
 import { HabitDashboard } from "./components/HabitDashboard";
 import { QuickCaptureModal } from "./components/QuickCaptureModal";
+import { FeatureVaultModal } from "./components/FeatureVaultModal";
+import { SovereignAudioPlayer } from "./components/SovereignAudioPlayer";
+import { SovereignHealthPanel } from "./components/SovereignHealthPanel";
+import { SubAgentDecisionLog } from "./components/SubAgentDecisionLog";
 
 import { ContextEngine } from "./core/context/ContextEngine";
+import { MemoryEngine } from "./core/memory/MemoryEngine";
+import { PermissionEngine } from "./core/permissions/PermissionEngine";
+import { globalEventBus } from "./core/events/EventBus";
 import { globalModelRouter } from "./packages/ai/ModelRouter";
 import omCosmicBg from "./assets/images/om_cosmic_bg_1786400452986.jpg";
+import omNeonAstralBg from "./assets/images/om_neon_astral_bg_1786603768538.jpg";
 
 import {
   initialSpaces,
@@ -50,6 +61,9 @@ import {
   AgentAction,
   AuditEvent,
   DailyBriefing,
+  OMTheme,
+  OMState,
+  SovereignStackStatus,
 } from "./types";
 
 export default function App() {
@@ -69,6 +83,7 @@ export default function App() {
   });
 
   const [memoryItems, setMemoryItems] = useState<MemoryItem[]>(() => {
+    MemoryEngine.initializeDefaults(initialMemory);
     const saved = localStorage.getItem("om_memory");
     return saved ? JSON.parse(saved) : initialMemory;
   });
@@ -93,9 +108,14 @@ export default function App() {
     return saved ? JSON.parse(saved) : initialHabits;
   });
 
-  const [theme, setTheme] = useState<"dark" | "light">(
-    () => (localStorage.getItem("om_theme") as "dark" | "light") || "dark"
-  );
+  const [theme, setTheme] = useState<OMTheme>(() => {
+    const saved = localStorage.getItem("om_theme");
+    if (saved === "neon-astral" || saved === "calm-light" || saved === "cosmic-gold") {
+      return saved as OMTheme;
+    }
+    if (saved === "light") return "calm-light";
+    return "cosmic-gold";
+  });
 
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>(() => {
     const saved = localStorage.getItem("om_calendar_events");
@@ -114,6 +134,63 @@ export default function App() {
   const [edgeNodes] = useState(initialEdgeNodes);
   const [containers] = useState(initialContainers);
 
+  // Sovereign Architecture & OM Intelligence State
+  const [omState, setOmState] = useState<OMState>("ready");
+  const [sovereignSetupOpen, setSovereignSetupOpen] = useState(false);
+  const [networkLock, setNetworkLock] = useState<boolean>(() => {
+    const saved = localStorage.getItem("om_network_lock");
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+  const [telemetry, setTelemetry] = useState<boolean>(() => {
+    const saved = localStorage.getItem("om_telemetry");
+    return saved !== null ? JSON.parse(saved) : false;
+  });
+
+  const [stackStatus, setStackStatus] = useState<SovereignStackStatus>({
+    godRouter: {
+      status: "offline",
+      endpoint: "http://127.0.0.1:11434",
+      model: "qwen2.5-coder:14b",
+      fallback: "gemini-3.6-flash",
+      policy: "Private quality-first",
+    },
+    godMemory: {
+      status: "configured",
+      endpoint: "http://127.0.0.1:6333",
+      collection: "om_vectors_dev",
+      vectorCount: 1420,
+    },
+    localMinio: {
+      status: "configured",
+      endpoint: "http://127.0.0.1:9000",
+      bucket: "om-vault",
+    },
+    cloudS3: {
+      status: "disabled",
+      endpoint: "https://s3.us-east-1.amazonaws.com",
+      bucket: "om-backup",
+      encryption: "AES-256-GCM Client-Side",
+    },
+    web3Bridge: {
+      status: "configured",
+      rpcEndpoint: "http://127.0.0.1:8545",
+      chain: "Local Anvil",
+      chainId: 31337,
+    },
+    ipfsStorage: {
+      status: "configured",
+      apiEndpoint: "http://127.0.0.1:5001",
+      version: "0.26.0",
+      pinnedCount: 14,
+    },
+    edgeNode: {
+      status: "online",
+      endpoint: "http://127.0.0.1:9090",
+      hardware: "Apple M2 / 16GB RAM",
+      workload: "Idle",
+    },
+  });
+
   // UI View States
   const [currentView, setCurrentView] = useState<string>("command");
   const [briefing, setBriefing] = useState<DailyBriefing | null>({
@@ -131,7 +208,66 @@ export default function App() {
 
   const [briefingModalOpen, setBriefingModalOpen] = useState(false);
   const [universalSearchOpen, setUniversalSearchOpen] = useState(false);
+  const [featureVaultOpen, setFeatureVaultOpen] = useState(false);
+  const [audioPlayerOpen, setAudioPlayerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleTriggerWake = () => {
+    setOmState("waking");
+    setTimeout(() => {
+      setOmState("ready");
+    }, 2500);
+  };
+
+  const handleRefreshStackProbes = async () => {
+    try {
+      // 1. Ollama Probe
+      const ollamaRes = await fetch("/api/ollama/status");
+      const ollamaJson = await ollamaRes.json();
+
+      // 2. Qdrant Probe
+      const qdrantRes = await fetch("/api/system/qdrant-health");
+      const qdrantJson = await qdrantRes.json();
+
+      // 3. Web3 RPC Probe
+      const web3Res = await fetch("/api/system/web3-rpc", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rpcUrl: stackStatus.web3Bridge.rpcEndpoint }),
+      });
+      const web3Json = await web3Res.json();
+
+      setStackStatus((prev) => ({
+        ...prev,
+        godRouter: {
+          ...prev.godRouter,
+          status: ollamaJson.online ? "online" : "offline",
+        },
+        godMemory: {
+          ...prev.godMemory,
+          status: qdrantJson.ok ? "online" : "offline",
+        },
+        web3Bridge: {
+          ...prev.web3Bridge,
+          status: web3Json.ok ? "online" : "offline",
+        },
+      }));
+    } catch (err) {
+      console.warn("Error probing stack:", err);
+    }
+  };
+
+  useEffect(() => {
+    handleRefreshStackProbes();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("om_network_lock", JSON.stringify(networkLock));
+  }, [networkLock]);
+
+  useEffect(() => {
+    localStorage.setItem("om_telemetry", JSON.stringify(telemetry));
+  }, [telemetry]);
 
   // Sync state to LocalStorage and Capture Context Snapshots
   useEffect(() => {
@@ -345,22 +481,49 @@ export default function App() {
     });
     const data = await res.json();
 
-    // If actions were proposed, add them to pending actions queue
+    // If actions were proposed, evaluate them against PermissionEngine & add to queue
     if (data.proposedActions && data.proposedActions.length > 0) {
-      const newActions: AgentAction[] = data.proposedActions.map((pa: any, i: number) => ({
-        id: `act_${Date.now()}_${i}`,
-        agentName: agentType,
-        title: pa.title,
-        type: pa.type || "terminal",
-        riskLevel: pa.riskLevel || "ASK",
-        command: pa.command,
-        details: `${pa.details || "Action drafted by agent."}${
-          routerMeta ? ` [Routed via ${routerMeta.provider.toUpperCase()} (${routerMeta.modelUsed})]` : ""
-        }`,
-        status: "pending",
-        timestamp: "Just now",
-        spaceId: activeSpaceId,
-      }));
+      const newActions: AgentAction[] = data.proposedActions.map((pa: any, i: number) => {
+        const type = pa.type || "terminal";
+        const riskLevel = pa.riskLevel || "ASK";
+        
+        const permResult = PermissionEngine.evaluate({
+          agentName: agentType,
+          actionType: type,
+          riskLevel,
+          command: pa.command,
+          details: pa.details || "Action drafted by agent.",
+          spaceId: activeSpaceId,
+          spaceSecurityPolicy: activeSpace?.securityPolicy || "standard",
+        });
+
+        const status = permResult.decision === "ALLOW" ? "approved" : permResult.decision === "DENY" ? "rejected" : "pending";
+
+        globalEventBus.publish("AGENT_ACTION_REQUESTED", {
+          agentName: agentType,
+          title: pa.title,
+          type,
+          riskLevel,
+          decision: permResult.decision,
+          reason: permResult.reason,
+          spaceId: activeSpaceId,
+        });
+
+        return {
+          id: `act_${Date.now()}_${i}`,
+          agentName: agentType,
+          title: pa.title,
+          type,
+          riskLevel,
+          command: pa.command,
+          details: `${pa.details || "Action drafted by agent."}${
+            routerMeta ? ` [Routed via ${routerMeta.provider.toUpperCase()} (${routerMeta.modelUsed})]` : ""
+          } (${permResult.reason})`,
+          status,
+          timestamp: "Just now",
+          spaceId: activeSpaceId,
+        };
+      });
       setActions((prev) => [...newActions, ...prev]);
     }
 
@@ -449,22 +612,21 @@ export default function App() {
     scope: "private" | "space" | "session",
     decisionFlag: boolean
   ) => {
-    const newMem: MemoryItem = {
-      id: `mem_${Date.now()}`,
+    const createdMemory = MemoryEngine.addMemory({
       content,
       entityTags,
       confidence: 0.99,
       source: "User Input",
       scope,
       spaceId: activeSpaceId,
-      createdAt: new Date().toISOString().replace("T", " ").substring(0, 16),
       userEditable: true,
       decisionFlag,
-    };
-    setMemoryItems((prev) => [newMem, ...prev]);
+    });
+    setMemoryItems((prev) => [createdMemory, ...prev]);
   };
 
   const handleDeleteMemory = (id: string) => {
+    MemoryEngine.deleteMemory(id);
     setMemoryItems((prev) => prev.filter((m) => m.id !== id));
   };
 
@@ -539,22 +701,43 @@ export default function App() {
 
   const pendingActions = actions.filter((a) => a.status === "pending");
 
+  const getThemeClass = () => {
+    switch (theme) {
+      case "neon-astral":
+        return "theme-neon-astral bg-[#0b0719] text-slate-100 selection:bg-purple-500";
+      case "calm-light":
+        return "theme-calm-light bg-slate-100 text-slate-900 selection:bg-amber-500";
+      default:
+        return "theme-cosmic-gold bg-[#090d16] text-slate-100 selection:bg-amber-500";
+    }
+  };
+
   return (
     <div
-      className={`relative flex h-screen font-sans antialiased overflow-hidden selection:bg-amber-500 selection:text-white transition-colors duration-300 ${
-        theme === "light" ? "light-theme bg-slate-100 text-slate-900" : "bg-slate-950 text-slate-100"
-      }`}
+      className={`relative flex h-screen font-sans antialiased overflow-hidden transition-colors duration-300 ${getThemeClass()}`}
     >
-      {/* Background Sacred Geometry Cosmic Backdrop */}
-      {theme === "dark" && (
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+      {/* Background Sacred Geometry Cosmic Backdrops */}
+      {(theme === "cosmic-gold" || (theme as string) === "dark") && (
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden animate-fade-in">
           <img
             src={omCosmicBg}
             alt="OM Cosmic Background"
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center opacity-30 scale-105 filter blur-[1px]"
+            className="w-full h-full object-cover object-center opacity-35 scale-105 filter blur-[1px]"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-slate-950/95 backdrop-blur-[2px]" />
+        </div>
+      )}
+
+      {theme === "neon-astral" && (
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden animate-fade-in">
+          <img
+            src={omNeonAstralBg}
+            alt="OM Neon Astral Background"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover object-center opacity-40 scale-105 filter blur-[1px]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b0719]/90 via-[#0b0719]/80 to-[#0b0719]/95 backdrop-blur-[2px]" />
         </div>
       )}
 
@@ -568,126 +751,306 @@ export default function App() {
           activeSpace={activeSpace}
           onSelectSpace={handleSelectSpace}
           pendingActions={pendingActions}
+          theme={theme}
+          onToggleTheme={setTheme}
+          onOpenSovereignSetup={() => setSovereignSetupOpen(true)}
+          onOpenSearch={() => setUniversalSearchOpen(true)}
+          onNewThread={() => setCurrentView("command")}
+          onOpenFeatureVault={() => setFeatureVaultOpen(true)}
+          onOpenHealthPanel={() => setCurrentView("health")}
+          onOpenAudioPlayer={() => setAudioPlayerOpen(!audioPlayerOpen)}
         />
 
         {/* Main Workspace Area */}
-        <main className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6">
-        {currentView === "command" && (
-          <CommandCenter
-            activeSpace={activeSpace}
-            spaces={spaces}
-            onSelectSpace={handleSelectSpace}
-            onOpenBriefing={() => setBriefingModalOpen(true)}
-            onOpenSearch={(q) => {
-              setSearchQuery(q);
-              setUniversalSearchOpen(true);
-            }}
-            pendingActions={pendingActions}
-            onOpenApprovals={() => setCurrentView("approvals")}
-            onNavigateToView={setCurrentView}
-            briefing={briefing}
-            habits={habits}
-            tasks={tasks}
-            calendarEvents={calendarEvents}
-            dailyGoals={dailyGoals}
-            onToggleGoal={handleToggleGoal}
-            onAddGoal={handleAddGoal}
-            onAddEvent={handleAddEvent}
-          />
-        )}
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+          {currentView === "command" && (
+            <div className="space-y-6">
+              <TaskWorkspace
+                activeSpace={activeSpace}
+                omState={omState}
+                onTriggerWake={handleTriggerWake}
+                pendingActions={pendingActions}
+                onApproveAction={handleApproveAction}
+                onRejectAction={handleRejectAction}
+                onSubmitPrompt={(q) => handleRunAgentTask("OM Agent", q)}
+                stackStatus={stackStatus}
+                onOpenSovereignSetup={() => setSovereignSetupOpen(true)}
+              />
+              <CommandCenter
+                activeSpace={activeSpace}
+                spaces={spaces}
+                onSelectSpace={handleSelectSpace}
+                onOpenBriefing={() => setBriefingModalOpen(true)}
+                onOpenSearch={(q) => {
+                  setSearchQuery(q);
+                  setUniversalSearchOpen(true);
+                }}
+                pendingActions={pendingActions}
+                onOpenApprovals={() => setCurrentView("approvals")}
+                onNavigateToView={setCurrentView}
+                briefing={briefing}
+                habits={habits}
+                tasks={tasks}
+                calendarEvents={calendarEvents}
+                dailyGoals={dailyGoals}
+                onToggleGoal={handleToggleGoal}
+                onAddGoal={handleAddGoal}
+                onAddEvent={handleAddEvent}
+              />
+            </div>
+          )}
 
-        {currentView === "spaces" && (
-          <SpacesManager
-            spaces={spaces}
-            activeSpace={activeSpace}
-            onSelectSpace={handleSelectSpace}
-            onCreateSpace={handleCreateSpace}
-            missions={missions}
-          />
-        )}
+          {currentView === "vault" && (
+            <div className="space-y-4">
+              <div className="p-6 rounded-2xl glass-panel border border-amber-500/30 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-bold text-amber-300 flex items-center gap-2">
+                    <span>50-Feature Sovereign Vault</span>
+                    <span className="px-2 py-0.5 rounded text-xs bg-amber-500/20 text-amber-300 border border-amber-500/30 font-mono">
+                      50/50 Modules Ready
+                    </span>
+                  </h2>
+                  <button
+                    onClick={() => setFeatureVaultOpen(true)}
+                    className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition cursor-pointer shadow-md"
+                  >
+                    Open Full Vault Modal
+                  </button>
+                </div>
+                <p className="text-xs text-slate-400">
+                  Comprehensive 50-feature catalog unifying AI agents, zero-knowledge storage, local vector memory, multi-model routing, and developer tools.
+                </p>
+              </div>
+              <SovereignHealthPanel
+                stackStatus={stackStatus}
+                onRefreshProbes={handleRefreshStackProbes}
+                onOpenSovereignSetup={() => setSovereignSetupOpen(true)}
+                compact
+              />
+            </div>
+          )}
 
-        {currentView === "browser" && (
-          <BrowserWorkspace
-            activeSpace={activeSpace}
-            tabs={tabs.filter((t) => t.spaceId === activeSpaceId)}
-            onAddTab={handleAddTab}
-            onCloseTab={handleCloseTab}
-            onSelectTab={handleSelectTab}
-            onAskPage={handleAskPage}
-          />
-        )}
+          {currentView === "kanban" && (
+            <MissionsTasks
+              activeSpace={activeSpace}
+              tasks={tasks}
+              notes={notes}
+              missions={missions}
+              onToggleTask={handleToggleTask}
+              onAddTask={handleAddTask}
+              onUpdateTaskDependencies={handleUpdateTaskDependencies}
+              onAddNote={handleAddNote}
+              onDeleteNote={handleDeleteNote}
+              initialTab="tasks"
+            />
+          )}
 
-        {currentView === "tutor" && (
-          <PersonalTutor
-            activeSpace={activeSpace}
-            onAddNote={handleAddNote}
-            onAddMemory={handleAddMemory}
-          />
-        )}
+          {currentView === "projects" && (
+            <MissionsTasks
+              activeSpace={activeSpace}
+              tasks={tasks}
+              notes={notes}
+              missions={missions}
+              onToggleTask={handleToggleTask}
+              onAddTask={handleAddTask}
+              onUpdateTaskDependencies={handleUpdateTaskDependencies}
+              onAddNote={handleAddNote}
+              onDeleteNote={handleDeleteNote}
+              initialTab="missions"
+            />
+          )}
 
-        {currentView === "memory" && (
-          <MemoryVault
-            memoryItems={memoryItems}
-            activeSpace={activeSpace}
-            onAddMemory={handleAddMemory}
-            onDeleteMemory={handleDeleteMemory}
-          />
-        )}
+          {currentView === "notes" && (
+            <MemoryVault
+              memoryItems={memoryItems}
+              activeSpace={activeSpace}
+              onAddMemory={handleAddMemory}
+              onDeleteMemory={handleDeleteMemory}
+              initialTab="notes"
+            />
+          )}
 
-        {currentView === "developer" && (
-          <DeveloperUniverse
-            activeSpace={activeSpace}
-            containers={containers}
-            onDiagnoseLog={handleDiagnoseLog}
-          />
-        )}
+          {currentView === "findings" && (
+            <MemoryVault
+              memoryItems={memoryItems}
+              activeSpace={activeSpace}
+              onAddMemory={handleAddMemory}
+              onDeleteMemory={handleDeleteMemory}
+              initialTab="findings"
+            />
+          )}
 
-        {currentView === "tasks" && (
-          <MissionsTasks
-            activeSpace={activeSpace}
-            tasks={tasks}
-            notes={notes}
-            missions={missions}
-            onToggleTask={handleToggleTask}
-            onAddTask={handleAddTask}
-            onUpdateTaskDependencies={handleUpdateTaskDependencies}
-            onAddNote={handleAddNote}
-            onDeleteNote={handleDeleteNote}
-          />
-        )}
+          {currentView === "prompts" && (
+            <MemoryVault
+              memoryItems={memoryItems}
+              activeSpace={activeSpace}
+              onAddMemory={handleAddMemory}
+              onDeleteMemory={handleDeleteMemory}
+              initialTab="prompts"
+            />
+          )}
 
-        {currentView === "habits" && (
-          <HabitDashboard
-            activeSpace={activeSpace}
-            habits={habits}
-            tasks={tasks}
-            onToggleHabit={handleToggleHabit}
-            onAddHabit={handleAddHabit}
-            onToggleTask={handleToggleTask}
-            onAddNote={handleAddNote}
-          />
-        )}
+          {currentView === "browser" && (
+            <BrowserWorkspace
+              activeSpace={activeSpace}
+              tabs={tabs.filter((t) => t.spaceId === activeSpaceId)}
+              onAddTab={handleAddTab}
+              onCloseTab={handleCloseTab}
+              onSelectTab={handleSelectTab}
+              onAskPage={handleAskPage}
+            />
+          )}
 
-        {currentView === "approvals" && (
-          <AgentApprovals
-            actions={actions}
-            auditEvents={auditEvents}
-            onApproveAction={handleApproveAction}
-            onRejectAction={handleRejectAction}
-            onRunAgentTask={handleRunAgentTask}
-          />
-        )}
+          {currentView === "audio" && (
+            <SovereignAudioPlayer />
+          )}
 
-        {currentView === "control" && (
-          <ControlPlane
-            modelRoutes={modelRoutes}
-            edgeNodes={edgeNodes}
-            onCheckOllamaStatus={handleCheckOllamaStatus}
-            theme={theme}
-            onToggleTheme={setTheme}
-          />
-        )}
-      </main>
+          {currentView === "notebooklm" && (
+            <PersonalTutor
+              activeSpace={activeSpace}
+              onAddNote={handleAddNote}
+              onAddMemory={handleAddMemory}
+            />
+          )}
+
+          {currentView === "integrations" && (
+            <ControlPlane
+              modelRoutes={modelRoutes}
+              edgeNodes={edgeNodes}
+              onCheckOllamaStatus={handleCheckOllamaStatus}
+              theme={theme}
+              onToggleTheme={setTheme}
+            />
+          )}
+
+          {currentView === "gitea" && (
+            <DeveloperUniverse
+              activeSpace={activeSpace}
+              containers={containers}
+              onDiagnoseLog={handleDiagnoseLog}
+            />
+          )}
+
+          {currentView === "ubuntu" && (
+            <SovereignHealthPanel
+              stackStatus={stackStatus}
+              onRefreshProbes={handleRefreshStackProbes}
+              onOpenSovereignSetup={() => setSovereignSetupOpen(true)}
+            />
+          )}
+
+          {currentView === "marketplace" && (
+            <ControlPlane
+              modelRoutes={modelRoutes}
+              edgeNodes={edgeNodes}
+              onCheckOllamaStatus={handleCheckOllamaStatus}
+              theme={theme}
+              onToggleTheme={setTheme}
+            />
+          )}
+
+          {currentView === "sovereign" && (
+            <div className="space-y-6">
+              <SovereignHealthPanel
+                stackStatus={stackStatus}
+                onRefreshProbes={handleRefreshStackProbes}
+                onOpenSovereignSetup={() => setSovereignSetupOpen(true)}
+              />
+              <div className="p-6 rounded-2xl glass-panel border border-emerald-500/30 text-center space-y-3">
+                <h3 className="text-base font-bold text-emerald-300">Sovereign Control Plane Configurator</h3>
+                <p className="text-xs text-slate-400">
+                  Configure GOD Router, GOD Memory (Qdrant), MinIO Private S3 Storage, Web3 JSON-RPC (Anvil), and Edge Nodes.
+                </p>
+                <button
+                  onClick={() => setSovereignSetupOpen(true)}
+                  className="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition cursor-pointer shadow-md"
+                >
+                  Configure Local Infrastructure Stack
+                </button>
+              </div>
+            </div>
+          )}
+
+          {currentView === "private" && (
+            <AgentApprovals
+              actions={actions}
+              auditEvents={auditEvents}
+              onApproveAction={handleApproveAction}
+              onRejectAction={handleRejectAction}
+              onRunAgentTask={handleRunAgentTask}
+            />
+          )}
+
+          {currentView === "teammate" && (
+            <AgentApprovals
+              actions={actions}
+              auditEvents={auditEvents}
+              onApproveAction={handleApproveAction}
+              onRejectAction={handleRejectAction}
+              onRunAgentTask={handleRunAgentTask}
+            />
+          )}
+
+          {currentView === "spaces" && (
+            <SpacesManager
+              spaces={spaces}
+              activeSpace={activeSpace}
+              onSelectSpace={handleSelectSpace}
+              onCreateSpace={handleCreateSpace}
+              missions={missions}
+            />
+          )}
+
+          {currentView === "memory" && (
+            <MemoryVault
+              memoryItems={memoryItems}
+              activeSpace={activeSpace}
+              onAddMemory={handleAddMemory}
+              onDeleteMemory={handleDeleteMemory}
+            />
+          )}
+
+          {currentView === "control" && (
+            <ControlPlane
+              modelRoutes={modelRoutes}
+              edgeNodes={edgeNodes}
+              onCheckOllamaStatus={handleCheckOllamaStatus}
+              theme={theme}
+              onToggleTheme={setTheme}
+            />
+          )}
+
+          {currentView === "approvals" && (
+            <AgentApprovals
+              actions={actions}
+              auditEvents={auditEvents}
+              onApproveAction={handleApproveAction}
+              onRejectAction={handleRejectAction}
+              onRunAgentTask={handleRunAgentTask}
+            />
+          )}
+        </main>
+
+        {/* Right Context Panel (Desktop ~320px) */}
+        <RightContextPanel
+          activeSpace={activeSpace}
+          stackStatus={stackStatus}
+          memoryItems={memoryItems}
+          onOpenSovereignSetup={() => setSovereignSetupOpen(true)}
+        />
+      </div>
+
+      {/* Sovereign Setup Control Plane Modal */}
+      <SovereignSetupModal
+        isOpen={sovereignSetupOpen}
+        onClose={() => setSovereignSetupOpen(false)}
+        stackStatus={stackStatus}
+        onRefreshProbes={handleRefreshStackProbes}
+        networkLock={networkLock}
+        onToggleNetworkLock={setNetworkLock}
+        telemetry={telemetry}
+        onToggleTelemetry={setTelemetry}
+      />
 
       {/* Modals */}
       <DailyBriefingModal
@@ -720,7 +1083,23 @@ export default function App() {
         onAddNote={handleAddNote}
         onAddMemory={handleAddMemory}
       />
-      </div>
+
+      {/* 50-Feature Sovereign Vault Overlay Modal */}
+      <FeatureVaultModal
+        isOpen={featureVaultOpen}
+        onClose={() => setFeatureVaultOpen(false)}
+        onNavigateView={setCurrentView}
+      />
+
+      {/* Floating Sovereign Radio & Audio Player Widget */}
+      {audioPlayerOpen && (
+        <div className="fixed bottom-6 right-6 z-40 w-96 max-w-[90vw] animate-fade-in">
+          <SovereignAudioPlayer
+            compact
+            onClose={() => setAudioPlayerOpen(false)}
+          />
+        </div>
+      )}
     </div>
   );
 }

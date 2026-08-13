@@ -1,6 +1,6 @@
 {
-  "name": "OM — Personal AI Cloud",
-  "description": "The private AI operating universe for people who live online — unifying tabs, spaces, notes, files, code, agents, and personal memory.",
-  "requestFramePermissions": [],
+  "name": "om-personal-ai-universe",
+  "description": "OM is a sovereign personal AI operating universe unifying tabs, spaces, notes, memory, tasks, local LLM routing, Web3, and agent execution in a single private workspace.",
+  "requestFramePermissions": ["microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

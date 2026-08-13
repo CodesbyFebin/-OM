@@ -15,22 +15,24 @@ import {
   Sun,
   Moon,
   Palette,
+  Sparkles,
+  Zap,
 } from "lucide-react";
-import { ModelRoute, EdgeNode, ContainerInfo } from "../types";
+import { ModelRoute, EdgeNode, ContainerInfo, OMTheme } from "../types";
 
 interface ControlPlaneProps {
   modelRoutes: ModelRoute[];
   edgeNodes: EdgeNode[];
   onCheckOllamaStatus: () => Promise<any>;
-  theme?: "dark" | "light";
-  onToggleTheme?: (theme: "dark" | "light") => void;
+  theme?: OMTheme;
+  onToggleTheme?: (theme: OMTheme) => void;
 }
 
 export const ControlPlane: React.FC<ControlPlaneProps> = ({
   modelRoutes,
   edgeNodes,
   onCheckOllamaStatus,
-  theme = "dark",
+  theme = "cosmic-gold",
   onToggleTheme,
 }) => {
   const [checkingOllama, setCheckingOllama] = useState(false);
@@ -48,6 +50,17 @@ export const ControlPlane: React.FC<ControlPlaneProps> = ({
     }
   };
 
+  const getThemeBadgeText = (th: OMTheme | string) => {
+    switch (th) {
+      case "neon-astral":
+        return "Neon Astral Cyber Active";
+      case "calm-light":
+        return "Calm Light Daybreak Active";
+      default:
+        return "Cosmic Gold Luxury Active";
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -55,7 +68,7 @@ export const ControlPlane: React.FC<ControlPlaneProps> = ({
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
-              <Cpu className="w-6 h-6 text-indigo-400" />
+              <Cpu className="w-6 h-6 text-amber-400" />
               <span>Control Plane & Sovereign AI Router</span>
             </h1>
             <span className="px-2 py-0.5 rounded text-xs font-mono font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -72,70 +85,106 @@ export const ControlPlane: React.FC<ControlPlaneProps> = ({
           disabled={checkingOllama}
           className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 rounded-xl text-xs font-medium transition flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
         >
-          <RefreshCw className={`w-4 h-4 text-indigo-400 ${checkingOllama ? "animate-spin" : ""}`} />
+          <RefreshCw className={`w-4 h-4 text-amber-400 ${checkingOllama ? "animate-spin" : ""}`} />
           <span>Check Local Ollama Node</span>
         </button>
       </div>
 
-      {/* Theme Controls & High Contrast Display Mode */}
+      {/* Theme Controls & Sacred Geometry Aesthetics */}
       <div className="p-5 rounded-3xl glass-panel space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-800">
           <div className="flex items-center gap-2.5">
-            <Palette className="w-5 h-5 text-indigo-400" />
+            <Palette className="w-5 h-5 text-amber-400" />
             <div>
               <h3 className="text-sm font-bold text-slate-100">
-                Display Theme & Contrast Configuration
+                OM Theme & Cosmic Visual Aesthetics
               </h3>
               <p className="text-xs text-slate-400">
-                Switch between Deep Space canvas and High Contrast Light Mode for well-lit environments.
+                Select your preferred sacred geometry canvas and atmosphere for your operating universe.
               </p>
             </div>
           </div>
 
-          <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 uppercase">
-            {theme === "light" ? "Light Mode Active" : "Deep Space Active"}
+          <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase">
+            {getThemeBadgeText(theme)}
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* 1. Cosmic Gold */}
           <button
-            onClick={() => onToggleTheme && onToggleTheme("dark")}
-            className={`p-4 rounded-2xl border transition text-left cursor-pointer flex items-center justify-between ${
-              theme === "dark"
-                ? "bg-slate-950 border-indigo-500 ring-2 ring-indigo-500/30 text-white"
+            onClick={() => onToggleTheme && onToggleTheme("cosmic-gold")}
+            className={`p-4 rounded-2xl border transition text-left cursor-pointer flex flex-col justify-between space-y-3 ${
+              theme === "cosmic-gold" || (theme as string) === "dark"
+                ? "bg-slate-950 border-amber-500 ring-2 ring-amber-500/40 gold-glow text-white"
                 : "bg-slate-950/60 border-slate-800 hover:border-slate-700 text-slate-400"
             }`}
           >
             <div className="space-y-1">
-              <div className="flex items-center gap-2 font-bold text-sm text-slate-100">
-                <Moon className="w-4 h-4 text-indigo-400" />
-                <span>Deep Space (Dark Canvas)</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 font-bold text-sm text-amber-300">
+                  <Sparkles className="w-4 h-4 text-amber-400" />
+                  <span>Cosmic Gold</span>
+                </div>
+                {(theme === "cosmic-gold" || (theme as string) === "dark") && (
+                  <CheckCircle2 className="w-4 h-4 text-amber-400" />
+                )}
               </div>
-              <p className="text-xs text-slate-400">
-                Low-eyestrain dark obsidian backdrop with glow highlights.
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Golden sacred geometry aura on deep obsidian backdrop. Unmatched elegance.
               </p>
             </div>
-            {theme === "dark" && <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0" />}
+            <div className="h-1.5 w-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 rounded-full opacity-80" />
           </button>
 
+          {/* 2. Neon Astral */}
           <button
-            onClick={() => onToggleTheme && onToggleTheme("light")}
-            className={`p-4 rounded-2xl border transition text-left cursor-pointer flex items-center justify-between ${
-              theme === "light"
-                ? "bg-slate-950 border-amber-500 ring-2 ring-amber-500/30 text-white"
+            onClick={() => onToggleTheme && onToggleTheme("neon-astral")}
+            className={`p-4 rounded-2xl border transition text-left cursor-pointer flex flex-col justify-between space-y-3 ${
+              theme === "neon-astral"
+                ? "bg-slate-950 border-purple-500 ring-2 ring-purple-500/40 neon-glow text-white"
                 : "bg-slate-950/60 border-slate-800 hover:border-slate-700 text-slate-400"
             }`}
           >
             <div className="space-y-1">
-              <div className="flex items-center gap-2 font-bold text-sm text-slate-100">
-                <Sun className="w-4 h-4 text-amber-400" />
-                <span>High Contrast Light Mode</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 font-bold text-sm text-purple-300">
+                  <Zap className="w-4 h-4 text-cyan-400" />
+                  <span>Neon Astral</span>
+                </div>
+                {theme === "neon-astral" && <CheckCircle2 className="w-4 h-4 text-purple-400" />}
               </div>
-              <p className="text-xs text-slate-400">
-                Crisp high-contrast light theme optimized for bright workspaces.
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Cyber spiritual violet & electric cyan glow with astral energy backdrops.
               </p>
             </div>
-            {theme === "light" && <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />}
+            <div className="h-1.5 w-full bg-gradient-to-r from-purple-500 via-cyan-400 to-indigo-500 rounded-full opacity-80" />
+          </button>
+
+          {/* 3. Calm Light */}
+          <button
+            onClick={() => onToggleTheme && onToggleTheme("calm-light")}
+            className={`p-4 rounded-2xl border transition text-left cursor-pointer flex flex-col justify-between space-y-3 ${
+              theme === "calm-light" || (theme as string) === "light"
+                ? "bg-slate-950 border-sky-400 ring-2 ring-sky-400/40 text-white"
+                : "bg-slate-950/60 border-slate-800 hover:border-slate-700 text-slate-400"
+            }`}
+          >
+            <div className="space-y-1">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 font-bold text-sm text-sky-300">
+                  <Sun className="w-4 h-4 text-amber-400" />
+                  <span>Calm Light</span>
+                </div>
+                {(theme === "calm-light" || (theme as string) === "light") && (
+                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                )}
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Crisp high contrast daybreak theme optimized for bright working environments.
+              </p>
+            </div>
+            <div className="h-1.5 w-full bg-gradient-to-r from-sky-400 via-indigo-300 to-amber-300 rounded-full opacity-80" />
           </button>
         </div>
       </div>

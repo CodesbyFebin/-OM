@@ -202,3 +202,4 @@ export class RelationalDatabase {
 }
 
 export const sqliteAdapter = new RelationalDatabase();
+export const localStorageAdapter = sqliteAdapter;

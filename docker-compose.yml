@@ -1,0 +1,92 @@
+version: '3.8'
+
+networks:
+  om-private-net:
+    driver: bridge
+    internal: false
+
+volumes:
+  ollama-data:
+  qdrant-data:
+  minio-data:
+  ipfs-data:
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: om-ollama
+    ports:
+      - "127.0.0.1:11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - om-private-net
+    restart: unless-stopped
+
+  ollama-bootstrap:
+    image: ollama/ollama:latest
+    container_name: om-ollama-bootstrap
+    entrypoint: ["/bin/sh", "-c", "sleep 5 && ollama pull qwen2.5-coder:14b && ollama pull deepseek-coder-v2:16b"]
+    networks:
+      - om-private-net
+    depends_on:
+      - ollama
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: om-qdrant
+    ports:
+      - "127.0.0.1:6333:6333"
+    volumes:
+      - qdrant-data:/qdrant/storage
+    networks:
+      - om-private-net
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:latest
+    container_name: om-minio
+    command: server /data --console-address ":9001"
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-om_admin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-om_secure_vault_secret_password_9941}
+    volumes:
+      - minio-data:/data
+    networks:
+      - om-private-net
+    restart: unless-stopped
+
+  ipfs:
+    image: ipfs/kubo:latest
+    container_name: om-ipfs
+    ports:
+      - "127.0.0.1:5001:5001"
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ipfs-data:/data/ipfs
+    networks:
+      - om-private-net
+    restart: unless-stopped
+
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:latest
+    container_name: om-anvil
+    entrypoint: ["anvil", "--host", "0.0.0.0"]
+    ports:
+      - "127.0.0.1:8545:8545"
+    networks:
+      - om-private-net
+    restart: unless-stopped
+
+  om-edge-node:
+    image: alpine:latest
+    container_name: om-edge-01
+    command: ["sh", "-c", "echo 'OM Edge Node running on loopback 9090' && sleep infinity"]
+    ports:
+      - "127.0.0.1:9090:9090"
+    networks:
+      - om-private-net
+    restart: unless-stopped

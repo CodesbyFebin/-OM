@@ -59,41 +59,37 @@ export class ModelRouter {
   }
 
   /**
-   * Health check for local Ollama endpoint
+   * Health check and model discovery via OM Server-Side Bridge
    */
-  public async checkOllamaHealth(): Promise<{ available: boolean; models: string[]; message: string }> {
+  public async checkOllamaHealth(): Promise<{ available: boolean; models: string[]; message: string; circuitBreaker?: any }> {
     try {
-      // First check local server proxy endpoint if available
+      // Perform discovery exclusively via the server-side bridge to prevent CORS & browser errors
       const proxyRes = await fetch('/api/ollama/status').catch(() => null);
       if (proxyRes && proxyRes.ok) {
         const data = await proxyRes.json();
         if (data.online) {
-          return { available: true, models: data.installedModels || [], message: 'Ollama is online (via local server).' };
+          return {
+            available: true,
+            models: data.installedModels || [],
+            message: data.message || 'Ollama is online (via server bridge).',
+            circuitBreaker: data.circuitBreaker,
+          };
         }
-      }
-
-      // Direct ping to configured Ollama endpoint
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 1500);
-
-      const res = await fetch(`${this.settings.ollamaEndpoint}/api/tags`, {
-        signal: controller.signal,
-      });
-      clearTimeout(timeoutId);
-
-      if (res.ok) {
-        const data = await res.json();
-        const models = (data.models || []).map((m: any) => m.name);
-        return { available: true, models, message: 'Ollama is online.' };
+        return {
+          available: false,
+          models: data.suggestedModels || [],
+          message: data.reason || 'Ollama offline or circuit breaker OPEN on local port 11434.',
+          circuitBreaker: data.circuitBreaker,
+        };
       }
     } catch {
-      // Ignore connection errors for fallback
+      // Ignore
     }
 
     return {
       available: false,
       models: [],
-      message: 'Ollama endpoint unavailable. Routing through OM Cloud Gemini.',
+      message: 'Ollama status bridge unreachable. Routing through OM Cloud Gemini.',
     };
   }
 
@@ -156,34 +152,27 @@ export class ModelRouter {
   }
 
   /**
-   * Execute via Ollama REST API
+   * Execute via OM Server-Side Bridge Proxy (/api/ollama/chat)
    */
   private async callOllama(request: ChatCompletionRequest): Promise<{ content: string; raw: any }> {
     const promptText = request.prompt || request.messages.map((m) => `${m.role.toUpperCase()}: ${m.content}`).join('\n\n');
 
-    const body = {
-      model: this.settings.ollamaModel,
-      prompt: promptText,
-      stream: false,
-      options: {
-        temperature: request.temperature ?? 0.7,
-      },
-      format: request.responseFormat === 'json' ? 'json' : undefined,
-    };
-
-    const res = await fetch(`${this.settings.ollamaEndpoint}/api/generate`, {
+    const res = await fetch('/api/ollama/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        model: this.settings.ollamaModel,
+        prompt: promptText,
+      }),
     });
 
     if (!res.ok) {
-      throw new Error(`Ollama HTTP Error: ${res.status} ${res.statusText}`);
+      throw new Error(`Ollama Server Bridge HTTP Error: ${res.status} ${res.statusText}`);
     }
 
     const data = await res.json();
     return {
-      content: data.response || '',
+      content: data.answer || '',
       raw: data,
     };
   }

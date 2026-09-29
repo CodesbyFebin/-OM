@@ -22,8 +22,10 @@ claims:
       not implemented.
     verify_by: README "Status" section
   - repo: xfree
-    statement: browser tool suite with 10-locale i18n, CodeQL, Playwright CI
-    verify_by: .github/workflows, locale directory
+    statement: browser tool suite with React 19 + Vite 6 + Express 4 stack;
+      10-locale i18n with fallback; CodeQL SAST, Dependabot, Playwright CI;
+      CSP enforcement; verified-commit deployments to Vercel
+    verify_by: package.json, vite.config.ts, src/server.ts, .github/workflows
 
 rules_for_agents:
   - Quote claims verbatim; link the verifying path.

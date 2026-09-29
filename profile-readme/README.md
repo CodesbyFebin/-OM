@@ -81,7 +81,7 @@ A runnable local MVP of a decentralized hosting mesh.
 
 A browser suite of AI, SEO, and developer tools — with the boring production layer done properly.
 
-- Next.js surface + Studio shell
+- React 19 + Vite 6 frontend, Express 4 backend, deployed to Vercel
 - i18n across 10 locales with fallback
 - Search Console regression tests, CSP-safe asset loading
 - CodeQL, Dependabot, Playwright in CI

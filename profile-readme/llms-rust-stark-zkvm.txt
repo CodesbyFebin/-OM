@@ -1,0 +1,21 @@
+> rust-stark-zkvm — Custom ISA STARK zkVM with Winterfell proving backend,
+>> HTTP API, and MCP tool integration for AI agents.
+>
+> Language: Rust
+> Focus: zero-knowledge proofs, verifiable computation, STARK arithmetization
+>
+> Repo: https://github.com/CodesbyFebin/rust-stark-zkvm
+> Stack: Winterfell, Ed25519, HTTP API, MCP tools
+>
+> Claims:
+> - Custom ISA with JZ/JNZ conditional branching and fixed register file
+> - STARK AIR arithmetization with Winterfell framework
+> - HTTP proving API (POST /v1/proofs, GET /v1/verify)
+> - MCP bindings for AI agents to call prove() and verify()
+> - CI proof gates that block merge on invalid proofs
+> - Multi-backend design: production Winterfell + labeled mock-echo simulator
+>
+> Verify: AGENTS.md | .github/workflows/proof-gate.yml | crates/zkvm-host-server
+>
+> Status: Proof gates active. Mock-echo backend is SIMULATED.
+> Limitations: Educational reference; production deployments need independent security review.

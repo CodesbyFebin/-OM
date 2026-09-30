@@ -1,0 +1,1318 @@
+{
+  "version": "1.0",
+  "owner": "CodesbyFebin",
+  "generated": "2026-09-30",
+  "total_repositories": 70,
+  "repositories": [
+    {
+      "id": 1,
+      "phase": 2,
+      "name": "agent-evaluation-cookbook",
+      "type": "cookbook",
+      "niche": "Agent Testing & Metrics",
+      "pair": "awesome-agent-evaluation",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "testing",
+        "evaluation",
+        "recipe",
+        "benchmarking"
+      ],
+      "related": []
+    },
+    {
+      "id": 2,
+      "phase": 3,
+      "name": "agent-fine-tuning-cookbook",
+      "type": "cookbook",
+      "niche": "Fine-Tuning Recipes",
+      "pair": "awesome-agent-fine-tuning",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "fine-tuning",
+        "training",
+        "recipe",
+        "optimization"
+      ],
+      "related": []
+    },
+    {
+      "id": 3,
+      "phase": 2,
+      "name": "agent-memory-cookbook",
+      "type": "cookbook",
+      "niche": "Memory Implementation Patterns",
+      "pair": "awesome-agent-memory",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "memory",
+        "storage",
+        "recipe",
+        "patterns"
+      ],
+      "related": []
+    },
+    {
+      "id": 4,
+      "phase": 1,
+      "name": "agent-skills-cookbook",
+      "type": "cookbook",
+      "niche": "Agent Skill Development",
+      "pair": "awesome-agent-skills",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "agent-skills",
+        "recipe",
+        "implementation",
+        "patterns"
+      ],
+      "related": []
+    },
+    {
+      "id": 5,
+      "phase": 1,
+      "name": "agentic-devops-cookbook",
+      "type": "cookbook",
+      "niche": "AI-Driven Infrastructure Automation",
+      "pair": "awesome-agentic-devops",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "devops",
+        "automation",
+        "recipe",
+        "infrastructure"
+      ],
+      "related": []
+    },
+    {
+      "id": 6,
+      "phase": 2,
+      "name": "agentic-rag-cookbook",
+      "type": "cookbook",
+      "niche": "Retrieval-Augmented Generation Recipes",
+      "pair": "awesome-agentic-rag",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "rag",
+        "retrieval",
+        "recipe",
+        "embeddings"
+      ],
+      "related": []
+    },
+    {
+      "id": 7,
+      "phase": 4,
+      "name": "ai-agent-orchestration-cookbook",
+      "type": "cookbook",
+      "niche": "Orchestration Recipes",
+      "pair": "awesome-ai-agent-orchestration",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "orchestration",
+        "recipe",
+        "workflow",
+        "coordination"
+      ],
+      "related": []
+    },
+    {
+      "id": 8,
+      "phase": 4,
+      "name": "ai-cost-optimization-cookbook",
+      "type": "cookbook",
+      "niche": "Cost Optimization Recipes",
+      "pair": "awesome-ai-cost-optimization",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "cost-optimization",
+        "recipe",
+        "efficiency",
+        "scaling"
+      ],
+      "related": []
+    },
+    {
+      "id": 9,
+      "phase": 4,
+      "name": "ai-data-pipeline-cookbook",
+      "type": "cookbook",
+      "niche": "Data Pipeline Recipes",
+      "pair": "awesome-ai-data-pipeline",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "data-pipeline",
+        "recipe",
+        "etl",
+        "quality"
+      ],
+      "related": []
+    },
+    {
+      "id": 10,
+      "phase": 4,
+      "name": "ai-deployment-cookbook",
+      "type": "cookbook",
+      "niche": "Deployment Strategy Recipes",
+      "pair": "awesome-ai-deployment-patterns",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "deployment",
+        "recipe",
+        "patterns",
+        "releases"
+      ],
+      "related": []
+    },
+    {
+      "id": 11,
+      "phase": 3,
+      "name": "ai-economics-cookbook",
+      "type": "cookbook",
+      "niche": "Economics Model Implementation",
+      "pair": "awesome-ai-economics",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "economics",
+        "pricing",
+        "recipe",
+        "business-models"
+      ],
+      "related": []
+    },
+    {
+      "id": 12,
+      "phase": 2,
+      "name": "ai-gateway-cookbook",
+      "type": "cookbook",
+      "niche": "Gateway Implementation Patterns",
+      "pair": "awesome-ai-gateways",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "gateway",
+        "routing",
+        "recipe",
+        "patterns"
+      ],
+      "related": []
+    },
+    {
+      "id": 13,
+      "phase": 4,
+      "name": "ai-human-collaboration-cookbook",
+      "type": "cookbook",
+      "niche": "Collaboration Pattern Recipes",
+      "pair": "awesome-ai-human-collaboration",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "collaboration",
+        "recipe",
+        "human-in-the-loop",
+        "feedback"
+      ],
+      "related": []
+    },
+    {
+      "id": 14,
+      "phase": 4,
+      "name": "ai-integration-cookbook",
+      "type": "cookbook",
+      "niche": "Integration Recipes",
+      "pair": "awesome-ai-integration-patterns",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "integration",
+        "recipe",
+        "patterns",
+        "apis"
+      ],
+      "related": []
+    },
+    {
+      "id": 15,
+      "phase": 4,
+      "name": "ai-knowledge-systems-cookbook",
+      "type": "cookbook",
+      "niche": "Knowledge System Recipes",
+      "pair": "awesome-ai-knowledge-systems",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "knowledge-systems",
+        "recipe",
+        "graphs",
+        "reasoning"
+      ],
+      "related": []
+    },
+    {
+      "id": 16,
+      "phase": 4,
+      "name": "ai-model-governance-cookbook",
+      "type": "cookbook",
+      "niche": "Model Governance Recipes",
+      "pair": "awesome-ai-model-governance",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "governance",
+        "recipe",
+        "registry",
+        "versioning"
+      ],
+      "related": []
+    },
+    {
+      "id": 17,
+      "phase": 4,
+      "name": "ai-monitoring-alerting-cookbook",
+      "type": "cookbook",
+      "niche": "Monitoring & Alerting Recipes",
+      "pair": "awesome-ai-monitoring-alerting",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "monitoring",
+        "recipe",
+        "alerting",
+        "sla"
+      ],
+      "related": []
+    },
+    {
+      "id": 18,
+      "phase": 2,
+      "name": "ai-observability-cookbook",
+      "type": "cookbook",
+      "niche": "Observability Implementation",
+      "pair": "awesome-ai-observability",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "observability",
+        "monitoring",
+        "recipe",
+        "telemetry"
+      ],
+      "related": []
+    },
+    {
+      "id": 19,
+      "phase": 2,
+      "name": "ai-platform-engineering-cookbook",
+      "type": "cookbook",
+      "niche": "Platform Engineering Recipes",
+      "pair": "awesome-ai-platform-engineering",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "platform-engineering",
+        "recipe",
+        "patterns"
+      ],
+      "related": []
+    },
+    {
+      "id": 20,
+      "phase": 3,
+      "name": "ai-safety-cookbook",
+      "type": "cookbook",
+      "niche": "Safety Implementation Recipes",
+      "pair": "awesome-ai-safety",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "safety",
+        "alignment",
+        "recipe",
+        "robustness"
+      ],
+      "related": []
+    },
+    {
+      "id": 21,
+      "phase": 3,
+      "name": "ai-security-cookbook",
+      "type": "cookbook",
+      "niche": "Security Implementation Recipes",
+      "pair": "awesome-ai-security",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "security",
+        "recipe",
+        "threat-modeling",
+        "testing"
+      ],
+      "related": []
+    },
+    {
+      "id": 22,
+      "phase": 4,
+      "name": "ai-testing-cookbook",
+      "type": "cookbook",
+      "niche": "Testing & QA Recipes",
+      "pair": "awesome-ai-testing-frameworks",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "testing",
+        "recipe",
+        "qa",
+        "validation"
+      ],
+      "related": []
+    },
+    {
+      "id": 23,
+      "phase": 2,
+      "name": "awesome-agent-evaluation",
+      "type": "awesome",
+      "niche": "Agent Evaluation & Benchmarking",
+      "pair": "agent-evaluation-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "evaluation",
+        "benchmarking",
+        "testing",
+        "metrics",
+        "quality-assurance"
+      ],
+      "related": [
+        "awesome-multi-agent-systems",
+        "awesome-ai-testing-frameworks",
+        "awesome-agent-fine-tuning"
+      ]
+    },
+    {
+      "id": 24,
+      "phase": 3,
+      "name": "awesome-agent-fine-tuning",
+      "type": "awesome",
+      "niche": "Agent Fine-Tuning & Optimization",
+      "pair": "agent-fine-tuning-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "fine-tuning",
+        "rlhf",
+        "adaptation",
+        "training",
+        "optimization"
+      ],
+      "related": [
+        "awesome-prompt-engineering",
+        "awesome-agent-evaluation"
+      ]
+    },
+    {
+      "id": 25,
+      "phase": 2,
+      "name": "awesome-agent-memory",
+      "type": "awesome",
+      "niche": "Agent Memory Systems",
+      "pair": "agent-memory-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "agent-memory",
+        "knowledge-storage",
+        "context-management",
+        "persistence"
+      ],
+      "related": [
+        "awesome-agentic-rag",
+        "awesome-agent-evaluation"
+      ]
+    },
+    {
+      "id": 26,
+      "phase": 1,
+      "name": "awesome-agent-skills",
+      "type": "awesome",
+      "niche": "Agent Skills & Capabilities",
+      "pair": "agent-skills-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "agent-skills",
+        "ai-agents",
+        "reusable-patterns",
+        "automation",
+        "capabilities",
+        "composable"
+      ],
+      "related": [
+        "awesome-mcp-servers-2027",
+        "awesome-multi-agent-systems",
+        "awesome-ai-agent-orchestration"
+      ]
+    },
+    {
+      "id": 27,
+      "phase": 1,
+      "name": "awesome-agentic-devops",
+      "type": "awesome",
+      "niche": "Agentic DevOps & Automation",
+      "pair": "agentic-devops-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "agentic-devops",
+        "ai-infrastructure",
+        "devops",
+        "automation",
+        "deployment",
+        "operations"
+      ],
+      "related": [
+        "awesome-kubernetes-ai",
+        "awesome-ai-monitoring-alerting"
+      ]
+    },
+    {
+      "id": 28,
+      "phase": 2,
+      "name": "awesome-agentic-rag",
+      "type": "awesome",
+      "niche": "Agentic RAG & Retrieval Systems",
+      "pair": "agentic-rag-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "rag",
+        "retrieval-augmented-generation",
+        "vector-search",
+        "ai-agents",
+        "embeddings"
+      ],
+      "related": [
+        "awesome-agent-memory",
+        "awesome-ai-knowledge-systems"
+      ]
+    },
+    {
+      "id": 29,
+      "phase": 4,
+      "name": "awesome-ai-agent-orchestration",
+      "type": "awesome",
+      "niche": "AI Agent Orchestration",
+      "pair": "ai-agent-orchestration-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "orchestration",
+        "workflow-engines",
+        "coordination",
+        "scheduling"
+      ],
+      "related": [
+        "awesome-multi-agent-systems",
+        "awesome-agent-evaluation"
+      ]
+    },
+    {
+      "id": 30,
+      "phase": 3,
+      "name": "awesome-ai-compliance",
+      "type": "awesome",
+      "niche": "AI Compliance & Governance",
+      "pair": "compliance-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "compliance",
+        "gdpr",
+        "regulatory",
+        "governance",
+        "audit"
+      ],
+      "related": [
+        "awesome-ai-security",
+        "awesome-ai-safety"
+      ]
+    },
+    {
+      "id": 31,
+      "phase": 4,
+      "name": "awesome-ai-cost-optimization",
+      "type": "awesome",
+      "niche": "AI Cost Optimization",
+      "pair": "ai-cost-optimization-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "cost-optimization",
+        "budget-management",
+        "efficiency",
+        "scaling"
+      ],
+      "related": [
+        "awesome-ai-gateways",
+        "awesome-real-time-ai"
+      ]
+    },
+    {
+      "id": 32,
+      "phase": 4,
+      "name": "awesome-ai-data-pipeline",
+      "type": "awesome",
+      "niche": "AI Data Pipeline & ETL",
+      "pair": "ai-data-pipeline-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "data-pipeline",
+        "etl",
+        "data-quality",
+        "ingestion"
+      ],
+      "related": [
+        "awesome-ai-model-governance"
+      ]
+    },
+    {
+      "id": 33,
+      "phase": 4,
+      "name": "awesome-ai-deployment-patterns",
+      "type": "awesome",
+      "niche": "AI Deployment Patterns",
+      "pair": "ai-deployment-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "deployment-patterns",
+        "blue-green",
+        "canary",
+        "releases"
+      ],
+      "related": [
+        "awesome-kubernetes-ai",
+        "awesome-ai-cost-optimization"
+      ]
+    },
+    {
+      "id": 34,
+      "phase": 3,
+      "name": "awesome-ai-economics",
+      "type": "awesome",
+      "niche": "AI Economics & Pricing",
+      "pair": "ai-economics-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "ai-economics",
+        "pricing-models",
+        "cost-analysis",
+        "business-models"
+      ],
+      "related": [
+        "awesome-ai-cost-optimization"
+      ]
+    },
+    {
+      "id": 35,
+      "phase": 2,
+      "name": "awesome-ai-gateways",
+      "type": "awesome",
+      "niche": "AI Gateways & Request Routing",
+      "pair": "ai-gateway-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "ai-gateway",
+        "routing",
+        "api-management",
+        "fallback",
+        "cost-control"
+      ],
+      "related": [
+        "awesome-ai-cost-optimization",
+        "awesome-ai-monitoring-alerting"
+      ]
+    },
+    {
+      "id": 36,
+      "phase": 4,
+      "name": "awesome-ai-human-collaboration",
+      "type": "awesome",
+      "niche": "Human-AI Collaboration",
+      "pair": "ai-human-collaboration-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "human-in-the-loop",
+        "collaboration",
+        "annotation",
+        "feedback"
+      ],
+      "related": [
+        "awesome-agent-evaluation"
+      ]
+    },
+    {
+      "id": 37,
+      "phase": 4,
+      "name": "awesome-ai-integration-patterns",
+      "type": "awesome",
+      "niche": "AI Integration Patterns",
+      "pair": "ai-integration-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "integration-patterns",
+        "apis",
+        "webhooks",
+        "event-driven"
+      ],
+      "related": [
+        "awesome-agentic-rag"
+      ]
+    },
+    {
+      "id": 38,
+      "phase": 4,
+      "name": "awesome-ai-knowledge-systems",
+      "type": "awesome",
+      "niche": "AI Knowledge Systems & Graphs",
+      "pair": "ai-knowledge-systems-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "knowledge-graphs",
+        "reasoning",
+        "semantic-search",
+        "representation"
+      ],
+      "related": [
+        "awesome-agentic-rag"
+      ]
+    },
+    {
+      "id": 39,
+      "phase": 4,
+      "name": "awesome-ai-model-governance",
+      "type": "awesome",
+      "niche": "Model Governance & Registry",
+      "pair": "ai-model-governance-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "model-governance",
+        "registry",
+        "versioning",
+        "deployment"
+      ],
+      "related": [
+        "awesome-ai-data-pipeline",
+        "awesome-ai-monitoring-alerting"
+      ]
+    },
+    {
+      "id": 40,
+      "phase": 4,
+      "name": "awesome-ai-monitoring-alerting",
+      "type": "awesome",
+      "niche": "AI Monitoring & Alerting",
+      "pair": "ai-monitoring-alerting-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "monitoring",
+        "alerting",
+        "sla-tracking",
+        "incident-response"
+      ],
+      "related": [
+        "awesome-ai-observability",
+        "awesome-ai-model-governance"
+      ]
+    },
+    {
+      "id": 41,
+      "phase": 2,
+      "name": "awesome-ai-observability",
+      "type": "awesome",
+      "niche": "AI Observability & Monitoring",
+      "pair": "ai-observability-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "observability",
+        "monitoring",
+        "telemetry",
+        "tracing",
+        "logging"
+      ],
+      "related": [
+        "awesome-ai-monitoring-alerting",
+        "awesome-ai-platform-engineering"
+      ]
+    },
+    {
+      "id": 42,
+      "phase": 2,
+      "name": "awesome-ai-platform-engineering",
+      "type": "awesome",
+      "niche": "AI Platform Engineering",
+      "pair": "ai-platform-engineering-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "platform-engineering",
+        "developer-platforms",
+        "abstractions",
+        "productivity"
+      ],
+      "related": [
+        "awesome-ai-observability",
+        "awesome-ai-monitoring-alerting"
+      ]
+    },
+    {
+      "id": 43,
+      "phase": 3,
+      "name": "awesome-ai-safety",
+      "type": "awesome",
+      "niche": "AI Safety & Alignment",
+      "pair": "ai-safety-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "ai-safety",
+        "alignment",
+        "interpretability",
+        "robustness"
+      ],
+      "related": [
+        "awesome-ai-security",
+        "awesome-ai-compliance"
+      ]
+    },
+    {
+      "id": 44,
+      "phase": 3,
+      "name": "awesome-ai-security",
+      "type": "awesome",
+      "niche": "AI Security & Threat Modeling",
+      "pair": "ai-security-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "ai-security",
+        "threat-modeling",
+        "adversarial-testing",
+        "supply-chain"
+      ],
+      "related": [
+        "awesome-verifiable-ai",
+        "awesome-ai-compliance",
+        "awesome-evidence-driven-engineering"
+      ]
+    },
+    {
+      "id": 45,
+      "phase": 4,
+      "name": "awesome-ai-testing-frameworks",
+      "type": "awesome",
+      "niche": "AI Testing Frameworks",
+      "pair": "ai-testing-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "testing",
+        "quality-assurance",
+        "chaos-engineering",
+        "validation"
+      ],
+      "related": [
+        "awesome-agent-evaluation"
+      ]
+    },
+    {
+      "id": 46,
+      "phase": 2,
+      "name": "awesome-evidence-driven-engineering",
+      "type": "awesome",
+      "niche": "Evidence-Driven Engineering",
+      "pair": "evidence-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "evidence",
+        "reproducibility",
+        "verification",
+        "scientific-computing"
+      ],
+      "related": [
+        "awesome-verifiable-ai",
+        "awesome-ai-security"
+      ]
+    },
+    {
+      "id": 47,
+      "phase": 3,
+      "name": "awesome-federated-learning",
+      "type": "awesome",
+      "niche": "Federated Learning & Privacy",
+      "pair": "federated-learning-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "federated-learning",
+        "distributed-training",
+        "privacy-preserving",
+        "machine-learning"
+      ],
+      "related": [
+        "awesome-synthetic-data",
+        "awesome-sovereign-ai"
+      ]
+    },
+    {
+      "id": 48,
+      "phase": 2,
+      "name": "awesome-kubernetes-ai",
+      "type": "awesome",
+      "niche": "Kubernetes & Distributed AI",
+      "pair": "kubernetes-ai-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "kubernetes",
+        "ai-deployment",
+        "k8s",
+        "distributed",
+        "mlops"
+      ],
+      "related": [
+        "awesome-agentic-devops",
+        "awesome-ai-deployment-patterns",
+        "awesome-ai-cost-optimization"
+      ]
+    },
+    {
+      "id": 49,
+      "phase": 1,
+      "name": "awesome-mcp-servers-2027",
+      "type": "awesome",
+      "niche": "Model Context Protocol Servers",
+      "pair": "mcp-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "mcp",
+        "model-context-protocol",
+        "ai-agents",
+        "agent-infrastructure",
+        "server-development",
+        "ai-tools",
+        "integration"
+      ],
+      "related": [
+        "awesome-agent-skills",
+        "awesome-multi-agent-systems"
+      ]
+    },
+    {
+      "id": 50,
+      "phase": 2,
+      "name": "awesome-multi-agent-systems",
+      "type": "awesome",
+      "niche": "Multi-Agent Systems & Orchestration",
+      "pair": "multi-agent-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "multi-agent",
+        "orchestration",
+        "ai-agents",
+        "coordination",
+        "swarms",
+        "collaboration"
+      ],
+      "related": [
+        "awesome-agent-skills",
+        "awesome-agent-evaluation",
+        "awesome-ai-agent-orchestration"
+      ]
+    },
+    {
+      "id": 51,
+      "phase": 3,
+      "name": "awesome-multimodal-systems",
+      "type": "awesome",
+      "niche": "Multimodal AI Systems",
+      "pair": "multimodal-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "multimodal",
+        "vision-language",
+        "cross-modal",
+        "integration"
+      ],
+      "related": [
+        "awesome-prompt-engineering"
+      ]
+    },
+    {
+      "id": 52,
+      "phase": 3,
+      "name": "awesome-prompt-engineering",
+      "type": "awesome",
+      "niche": "Prompt Engineering Techniques",
+      "pair": "prompt-engineering-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "prompt-engineering",
+        "llm-optimization",
+        "techniques",
+        "best-practices"
+      ],
+      "related": [
+        "awesome-agent-fine-tuning"
+      ]
+    },
+    {
+      "id": 53,
+      "phase": 3,
+      "name": "awesome-real-time-ai",
+      "type": "awesome",
+      "niche": "Real-Time AI & Low-Latency Inference",
+      "pair": "real-time-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "real-time-ai",
+        "low-latency",
+        "streaming",
+        "edge-deployment"
+      ],
+      "related": [
+        "awesome-ai-cost-optimization"
+      ]
+    },
+    {
+      "id": 54,
+      "phase": 2,
+      "name": "awesome-self-hosted-cloud",
+      "type": "awesome",
+      "niche": "Self-Hosted Cloud Platforms",
+      "pair": "self-hosted-cloud-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "self-hosted",
+        "sovereignty",
+        "on-premise",
+        "privacy",
+        "alternatives"
+      ],
+      "related": [
+        "awesome-sovereign-ai",
+        "awesome-kubernetes-ai"
+      ]
+    },
+    {
+      "id": 55,
+      "phase": 1,
+      "name": "awesome-sovereign-ai",
+      "type": "awesome",
+      "niche": "Sovereign AI & Self-Hosted Systems",
+      "pair": "sovereign-ai-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "sovereign-ai",
+        "self-hosted",
+        "data-ownership",
+        "privacy-first",
+        "on-premise"
+      ],
+      "related": [
+        "awesome-self-hosted-cloud",
+        "awesome-verifiable-ai"
+      ]
+    },
+    {
+      "id": 56,
+      "phase": 3,
+      "name": "awesome-synthetic-data",
+      "type": "awesome",
+      "niche": "Synthetic Data Generation",
+      "pair": "synthetic-data-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "synthetic-data",
+        "data-generation",
+        "augmentation",
+        "quality"
+      ],
+      "related": [
+        "awesome-federated-learning"
+      ]
+    },
+    {
+      "id": 57,
+      "phase": 1,
+      "name": "awesome-verifiable-ai",
+      "type": "awesome",
+      "niche": "Verifiable AI & Proof Systems",
+      "pair": "verifiable-ai-cookbook",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "topics": [
+        "verifiable-ai",
+        "zero-knowledge",
+        "attestation",
+        "proof-systems",
+        "verification"
+      ],
+      "related": [
+        "awesome-sovereign-ai",
+        "awesome-ai-security",
+        "awesome-evidence-driven-engineering"
+      ]
+    },
+    {
+      "id": 58,
+      "phase": 3,
+      "name": "compliance-cookbook",
+      "type": "cookbook",
+      "niche": "Compliance Implementation",
+      "pair": "awesome-ai-compliance",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "compliance",
+        "recipe",
+        "governance",
+        "audit"
+      ],
+      "related": []
+    },
+    {
+      "id": 59,
+      "phase": 2,
+      "name": "evidence-cookbook",
+      "type": "cookbook",
+      "niche": "Reproducibility & Verification",
+      "pair": "awesome-evidence-driven-engineering",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "verification",
+        "reproducibility",
+        "recipe",
+        "testing"
+      ],
+      "related": []
+    },
+    {
+      "id": 60,
+      "phase": 3,
+      "name": "federated-learning-cookbook",
+      "type": "cookbook",
+      "niche": "Federated Learning Recipes",
+      "pair": "awesome-federated-learning",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "federated-learning",
+        "recipe",
+        "privacy",
+        "distributed"
+      ],
+      "related": []
+    },
+    {
+      "id": 61,
+      "phase": 2,
+      "name": "kubernetes-ai-cookbook",
+      "type": "cookbook",
+      "niche": "AI Deployment on Kubernetes",
+      "pair": "awesome-kubernetes-ai",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "kubernetes",
+        "k8s",
+        "deployment",
+        "recipe"
+      ],
+      "related": []
+    },
+    {
+      "id": 62,
+      "phase": 1,
+      "name": "mcp-cookbook",
+      "type": "cookbook",
+      "niche": "Model Context Protocol Implementation",
+      "pair": "awesome-mcp-servers-2027",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "mcp",
+        "model-context-protocol",
+        "recipe",
+        "implementation",
+        "tutorial"
+      ],
+      "related": []
+    },
+    {
+      "id": 63,
+      "phase": 2,
+      "name": "multi-agent-cookbook",
+      "type": "cookbook",
+      "niche": "Multi-Agent Implementation Patterns",
+      "pair": "awesome-multi-agent-systems",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "multi-agent",
+        "orchestration",
+        "recipe",
+        "patterns"
+      ],
+      "related": []
+    },
+    {
+      "id": 64,
+      "phase": 3,
+      "name": "multimodal-cookbook",
+      "type": "cookbook",
+      "niche": "Multimodal Integration Recipes",
+      "pair": "awesome-multimodal-systems",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "multimodal",
+        "recipe",
+        "vision-language",
+        "integration"
+      ],
+      "related": []
+    },
+    {
+      "id": 65,
+      "phase": 3,
+      "name": "prompt-engineering-cookbook",
+      "type": "cookbook",
+      "niche": "Prompt Engineering Recipes",
+      "pair": "awesome-prompt-engineering",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "prompt-engineering",
+        "recipe",
+        "llm",
+        "techniques"
+      ],
+      "related": []
+    },
+    {
+      "id": 66,
+      "phase": 3,
+      "name": "real-time-cookbook",
+      "type": "cookbook",
+      "niche": "Real-Time AI Recipes",
+      "pair": "awesome-real-time-ai",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "real-time",
+        "recipe",
+        "low-latency",
+        "streaming"
+      ],
+      "related": []
+    },
+    {
+      "id": 67,
+      "phase": 2,
+      "name": "self-hosted-cloud-cookbook",
+      "type": "cookbook",
+      "niche": "Self-Hosting Deployment Guides",
+      "pair": "awesome-self-hosted-cloud",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "self-hosted",
+        "deployment",
+        "recipe",
+        "guide"
+      ],
+      "related": []
+    },
+    {
+      "id": 68,
+      "phase": 1,
+      "name": "sovereign-ai-cookbook",
+      "type": "cookbook",
+      "niche": "Sovereign AI Deployment",
+      "pair": "awesome-sovereign-ai",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "sovereign-ai",
+        "self-hosted",
+        "deployment",
+        "privacy"
+      ],
+      "related": []
+    },
+    {
+      "id": 69,
+      "phase": 3,
+      "name": "synthetic-data-cookbook",
+      "type": "cookbook",
+      "niche": "Synthetic Data Recipes",
+      "pair": "awesome-synthetic-data",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "synthetic-data",
+        "generation",
+        "recipe",
+        "augmentation"
+      ],
+      "related": []
+    },
+    {
+      "id": 70,
+      "phase": 1,
+      "name": "verifiable-ai-cookbook",
+      "type": "cookbook",
+      "niche": "Verifiable Computation Recipes",
+      "pair": "awesome-verifiable-ai",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "topics": [
+        "verification",
+        "proofs",
+        "attestation",
+        "recipe"
+      ],
+      "related": []
+    }
+  ]
+}

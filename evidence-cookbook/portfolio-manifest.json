@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "evidence-cookbook",
+      "niche": "Reproducibility & Verification",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-evidence-driven-engineering"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "agentic-devops-cookbook",
+      "niche": "AI-Driven Infrastructure Automation",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-agentic-devops"
+    }
+  ]
+}

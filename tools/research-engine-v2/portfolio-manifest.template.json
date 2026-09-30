@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-agent-skills",
+      "niche": "Agent Skills & Capabilities",
+      "targetProjects": 50,
+      "pair": "agent-skills-cookbook",
+      "_comment": "For use in a single awesome-* or *-cookbook repository. Install dh-research-engine via pip, set GITHUB_TOKEN, then run: dh-research repo --repo awesome-agent-skills"
+    }
+  ]
+}

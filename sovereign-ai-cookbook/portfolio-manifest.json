@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "sovereign-ai-cookbook",
+      "niche": "Sovereign AI Deployment",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-sovereign-ai"
+    }
+  ]
+}

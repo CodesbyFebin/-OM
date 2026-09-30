@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-federated-learning",
+      "niche": "Federated Learning & Privacy",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "federated-learning-cookbook"
+    }
+  ]
+}

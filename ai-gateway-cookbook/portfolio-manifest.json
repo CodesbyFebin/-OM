@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-gateway-cookbook",
+      "niche": "Gateway Implementation Patterns",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-gateways"
+    }
+  ]
+}

@@ -1,82 +1,177 @@
-# om-personal-ai-universe
+# 70-Repository Deployment Package
 
-<p align="center">
-  <img src="./src/assets/images/om_repo_hero_1786624414051.jpg" alt="OM Personal AI Operating Universe Repo Hero Banner" width="100%" referrerPolicy="no-referrer" />
-</p>
+**Status:** ✅ Ready to deploy
 
-<p align="center">
-  <img src="./src/assets/images/om_logo_icon_1786624400276.jpg" alt="OM Logo Icon" width="120" height="120" style="border-radius: 24px;" referrerPolicy="no-referrer" />
-</p>
+All 70 repository templates are prepared and ready to push to GitHub.
 
-<h3 align="center">Sovereign Personal AI Operating Universe — Unified Workspace for Local & Cloud AI</h3>
+## What's Included
 
-<p align="center">
-  <a href="https://github.com/your-username/om-personal-ai-universe"><img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status" /></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
-  <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome" /></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.8-blue" alt="TypeScript" /></a>
-  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19.0-61dafb" alt="React" /></a>
-</p>
+```
+/tmp/70-repos/
+├── DEPLOYMENT-INSTRUCTIONS.md     # Complete deployment guide
+├── PUSH-ALL-REPOS.sh              # Automated push script
+├── README.md                       # This file
+└── {70 repo templates}/
+    ├── agent-evaluation-cookbook/
+    ├── agent-fine-tuning-cookbook/
+    ├── ...
+    └── verifiable-ai-cookbook/
+        ├── portfolio-manifest.json
+        ├── .gitignore
+        ├── README.md
+        └── .github/workflows/research-engine.yml
+```
+
+## Quick Start
+
+### Automated (Recommended)
+
+```bash
+cd /tmp/70-repos
+chmod +x PUSH-ALL-REPOS.sh
+./PUSH-ALL-REPOS.sh
+```
+
+**Requirements:**
+- `gh` CLI installed and authenticated
+- ~15 minutes
+- 70 public repositories created on GitHub
+
+### Manual Alternative
+
+See `DEPLOYMENT-INSTRUCTIONS.md` → "Option 2: Manual Push"
+
+## Summary
+
+| Metric | Value |
+|--------|-------|
+| Total Repositories | 70 |
+| Awesome Lists | 35 |
+| Cookbooks | 35 |
+| Deployment Phases | 4 |
+| Phase 1 (Foundation) | 10 repos |
+| Phase 2 (Scale) | 20 repos |
+| Phase 3 (Specialization) | 20 repos |
+| Phase 4 (Operations) | 20 repos |
+
+## Repository Distribution
+
+### By Type
+
+- **Awesome Lists** (35): Curated project discovery with dh-research-engine
+- **Cookbooks** (35): Implementation recipes and patterns
+
+### By Phase
+
+- **Phase 1:** Agent basics, DevOps, MCP, Sovereign AI, Verifiable AI
+- **Phase 2:** Evaluation, Memory, RAG, Observability, Multi-agent
+- **Phase 3:** Fine-tuning, Safety, Security, Compliance, Federated Learning
+- **Phase 4:** Orchestration, Cost, Data, Deployment, Monitoring
+
+## Each Repository Contains
+
+✅ `portfolio-manifest.json`
+- Niche definition
+- Target projects/recipes count
+- Paired repo reference
+
+✅ `.gitignore`
+- Excludes: `__pycache__/`, `.dh-cache/`, `out/`, `evidence/`
+- Keeps output safe from accidental commits
+
+✅ `README.md`
+- Quick start guide
+- Links to dh-research-engine docs
+- License info
+
+✅ `.github/workflows/research-engine.yml`
+- Weekly auto-refresh (Sunday 2am UTC)
+- Manual trigger support
+- Auto-commit on changes
+- GitHub Actions artifact storage
+
+## Deployment Checklist
+
+- [ ] Read `DEPLOYMENT-INSTRUCTIONS.md`
+- [ ] Install GitHub CLI (`gh`)
+- [ ] Authenticate: `gh auth login`
+- [ ] Run: `./PUSH-ALL-REPOS.sh`
+- [ ] Verify: `gh repo list CodesbyFebin --limit 100`
+- [ ] Test Phase 1: `dh-research repo --repo awesome-agent-skills`
+- [ ] Configure GitHub Actions secrets
+- [ ] Monitor first auto-refresh run
+
+## Template Preview
+
+Each repository is structured identically:
+
+**portfolio-manifest.json**
+```json
+{
+  "repositories": [
+    {
+      "name": "awesome-agent-skills",
+      "niche": "Agent Skills & Capabilities",
+      "targetProjects": 50,
+      "pair": "agent-skills-cookbook"
+    }
+  ]
+}
+```
+
+**README.md**
+```markdown
+# awesome-agent-skills
+
+Agent Skills & Capabilities
+
+## Research Engine
+
+This repository uses [dh-research-engine](...)
+to generate a curated catalog.
+
+### Quick Start
+
+```bash
+pip install dh-research-engine
+export GITHUB_TOKEN=ghp_...
+dh-research repo --repo awesome-agent-skills
+```
+
+[...docs...]
+```
+
+**GitHub Actions Workflow**
+- Scheduled: Weekly Sunday 2am UTC
+- Trigger: Manual via GitHub Actions
+- Command: `dh-research repo --repo {name}`
+- Output: Commits data/, README.md, reports/, evidence/
+
+## Next Steps
+
+1. **Deploy all 70:** Run `PUSH-ALL-REPOS.sh`
+2. **Validate Phase 1:** Test with real GitHub token on 10 Foundation repos
+3. **Configure Secrets:** Set up GITHUB_TOKEN for automation
+4. **Monitor:** Watch first auto-refresh runs
+5. **Scale:** Gradually enable more phases
+
+## Files & Documentation
+
+| File | Purpose |
+|------|---------|
+| `DEPLOYMENT-INSTRUCTIONS.md` | Complete step-by-step guide |
+| `PUSH-ALL-REPOS.sh` | Automated creation script |
+| `portfolio-manifest.json` (in -OM) | Source of all 70 definitions |
+
+## Support
+
+See: https://github.com/CodesbyFebin/-OM/tree/main/tools/research-engine-v2
+
+- `README.md` — Architecture & usage
+- `AGENTS.md` — Non-negotiable contract
+- `DEPLOYMENT-70-REPOS.md` — Per-repo details
+- `QUICKSTART-SINGLE-REPO.md` — 5-min setup
 
 ---
 
-## 🌌 Overview
-
-**OM (`om-personal-ai-universe`)** is a sovereign personal AI operating universe designed for privacy-first intelligence, zero-knowledge context isolation, and complete user ownership. It unifies collaborative AI agent execution (**Codex**, **Z Code**, and **Claude**), local LLM routing via Ollama, PostgreSQL state adapters, Redis job queues, and Web3 RPC registries into a single private workspace.
-
----
-
-## 🏷️ Repository Topics
-
-`om` · `personal-ai` · `ai-operating-system` · `sovereign-ai` · `agent-framework` · `llm-router` · `local-ai` · `ollama` · `react` · `typescript` · `express` · `redis-queue` · `postgresql` · `web3` · `privacy-first` · `gemini-api` · `codex` · `zcode` · `claude` · `command-center`
-
----
-
-## ✨ Key Features
-
-### 🤖 Collaborative AI Development Hub
-- **Codex**: Rapid code generation, PR reviews, and functional refactoring.
-- **Z Code**: Automated security scanning, performance bottleneck analysis, and code quality audits.
-- **Claude**: High-level system architecture, deployment strategy, and zero-trust security guidance.
-
-### 🛡️ Sovereign Privacy & Circuit Breakers
-- **Server-Side Bridge**: All local Ollama probes and LLM inferences route through `/api/ollama/status` and `/api/ollama/chat`, preventing CORS issues and browser loopback exposure.
-- **Circuit Breaker Engine**: 3-state state machine (`CLOSED`, `OPEN`, `HALF-OPEN`) handling local service timeouts with automatic failover to Gemini cloud intelligence.
-- **SSRF Protection**: Allowlisted Web3 RPC registry (`anvil-local`, `eth-mainnet`, `polygon-mainnet`, `arbitrum-mainnet`) with loopback filtering.
-
-### ⚡ Queue Architecture & Audit Trail
-- **Redis Agent Job Queue**: Atomic state machine (`Draft` → `AwaitingApproval` → `Queued` → `Leased` → `Running` → `Verifying` → `Succeeded` / `Failed`) with 60s lease locks.
-- **Live Audit Feed**: Immutable event trail capturing all agent actions, database syncs, and system probes.
-
----
-
-## 🚀 Quick Start
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-username/om-personal-ai-universe.git
-   cd om-personal-ai-universe
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Build for production:**
-   ```bash
-   npm run build
-   npm start
-   ```
-
----
-
-## 📄 License & Contributing
-
-- **License**: [MIT License](./LICENSE)
-- **Contributing**: Check out our [Contributing Guide](./CONTRIBUTING.md) to get started!
+**Ready to deploy?** → `./PUSH-ALL-REPOS.sh`

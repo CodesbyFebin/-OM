@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "agent-memory-cookbook",
+      "niche": "Memory Implementation Patterns",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-agent-memory"
+    }
+  ]
+}

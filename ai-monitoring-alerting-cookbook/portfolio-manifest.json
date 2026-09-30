@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-monitoring-alerting-cookbook",
+      "niche": "Monitoring & Alerting Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-monitoring-alerting"
+    }
+  ]
+}

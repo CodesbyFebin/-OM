@@ -1,0 +1,34 @@
+name: Research Engine
+
+on:
+  schedule:
+    - cron: "0 2 * * 0"  # Weekly Sunday 2am UTC
+  workflow_dispatch:
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - run: pip install dh-research-engine
+      - run: dh-research repo --repo ai-human-collaboration-cookbook
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: research-output
+          path: |
+            data/
+            reports/
+            evidence/
+      - name: Commit changes
+        run: |
+          git config user.name "Research Engine"
+          git config user.email "research@codesbyfebin.dev"
+          git add data/ README.md reports/ evidence/ 2>/dev/null || true
+          git diff --cached --exit-code || \
+            (git commit -m "Research: update catalog" && git push)

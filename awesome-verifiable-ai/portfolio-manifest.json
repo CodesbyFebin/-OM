@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-verifiable-ai",
+      "niche": "Verifiable AI & Proof Systems",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "verifiable-ai-cookbook"
+    }
+  ]
+}

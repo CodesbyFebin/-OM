@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-integration-patterns",
+      "niche": "AI Integration Patterns",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-integration-cookbook"
+    }
+  ]
+}

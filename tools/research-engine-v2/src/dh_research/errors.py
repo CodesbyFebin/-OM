@@ -1,0 +1,6 @@
+class EngineError(Exception): ...
+class TransportUnavailable(EngineError):
+    """Network/API could not be reached. Callers MUST treat as UNKNOWN, not zero."""
+class AuthError(EngineError): ...
+class RateLimited(EngineError):
+    def __init__(self, retry_after: float): self.retry_after = retry_after

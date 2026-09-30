@@ -1,0 +1,8 @@
+Tool: dh-research-engine v2
+Owner: CodesbyFebin
+License: MIT
+Purpose: Evidence-first GitHub research → Awesome/Cookbook repo content factory
+Contract: VERIFIED=observed repo+README; UNKNOWN preserved; 50=ceiling not quota
+Stdlib-only: urllib, sqlite3, json, dataclasses (no supply chain)
+Entry: cli.py (repo|selftest)
+Offline: No network → NEEDS_WORK gate (not silence/fabrication)

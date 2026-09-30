@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "agent-fine-tuning-cookbook",
+      "niche": "Fine-Tuning Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-agent-fine-tuning"
+    }
+  ]
+}

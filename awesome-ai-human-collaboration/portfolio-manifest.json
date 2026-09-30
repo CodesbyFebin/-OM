@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-human-collaboration",
+      "niche": "Human-AI Collaboration",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-human-collaboration-cookbook"
+    }
+  ]
+}

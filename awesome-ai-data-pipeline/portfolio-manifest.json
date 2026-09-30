@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-data-pipeline",
+      "niche": "AI Data Pipeline & ETL",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-data-pipeline-cookbook"
+    }
+  ]
+}

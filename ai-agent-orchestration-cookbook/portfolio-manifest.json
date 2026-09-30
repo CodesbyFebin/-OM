@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-agent-orchestration-cookbook",
+      "niche": "Orchestration Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-agent-orchestration"
+    }
+  ]
+}

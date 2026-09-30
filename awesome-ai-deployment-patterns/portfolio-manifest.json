@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-deployment-patterns",
+      "niche": "AI Deployment Patterns",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-deployment-cookbook"
+    }
+  ]
+}

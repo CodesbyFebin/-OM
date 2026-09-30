@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-real-time-ai",
+      "niche": "Real-Time AI & Low-Latency Inference",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "real-time-cookbook"
+    }
+  ]
+}

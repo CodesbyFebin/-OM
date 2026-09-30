@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-knowledge-systems",
+      "niche": "AI Knowledge Systems & Graphs",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-knowledge-systems-cookbook"
+    }
+  ]
+}

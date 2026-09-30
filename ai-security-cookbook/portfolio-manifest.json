@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-security-cookbook",
+      "niche": "Security Implementation Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-security"
+    }
+  ]
+}

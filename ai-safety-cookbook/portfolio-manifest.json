@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-safety-cookbook",
+      "niche": "Safety Implementation Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-safety"
+    }
+  ]
+}

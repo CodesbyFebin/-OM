@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "mcp-cookbook",
+      "niche": "Model Context Protocol Implementation",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-mcp-servers-2027"
+    }
+  ]
+}

@@ -10,8 +10,22 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Febin Francis", email = "codesbyfebin@gmail.com" }]
-keywords = ["awesome-lists", "curation", "github-api", "provenance", "evidence-first"]
+keywords = ["awesome-lists", "curation", "github-api", "provenance", "evidence-first", "research-engine"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+]
 dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/CodesbyFebin/-OM"
+Repository = "https://github.com/CodesbyFebin/-OM/tree/main/tools/research-engine-v2"
+Documentation = "https://github.com/CodesbyFebin/-OM/blob/main/tools/research-engine-v2/README.md"
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]

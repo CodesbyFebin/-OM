@@ -1,7 +1,7 @@
 from __future__ import annotations
 import argparse, json, os, sys
 from .config import Config
-from . import discover, enrich, dedupe, classify, verify, generate, quality, ndjson
+from . import discover, enrich, dedupe, classify, verify, generate, quality, ndjson, recipe_generator
 from .errors import TransportUnavailable, RateLimited, AuthError
 
 def _manifest(path): return json.load(open(path))["repositories"]
@@ -17,11 +17,18 @@ def main(argv=None) -> int:
     r.add_argument("--portfolio-dir", default=".")
     r.add_argument("--offline", action="store_true")
 
+    rc = sub.add_parser("recipes", help="generate executable recipes from projects")
+    rc.add_argument("--projects", default="out/*/data/projects.json", help="projects.json glob pattern")
+    rc.add_argument("--output-dir", default="recipes", help="output directory")
+
     s = sub.add_parser("selftest", help="offline fixture-based invariant check")
     a = ap.parse_args(argv)
 
     if a.cmd == "selftest":
         return _selftest()
+
+    if a.cmd == "recipes":
+        return _recipes(a)
 
     cfg = Config(offline=a.offline)
     if a.cmd == "repo":
@@ -70,6 +77,59 @@ def main(argv=None) -> int:
         print(json.dumps(q, indent=2))
         return 0 if q["status"] == "COMPLETE" else 1
 
+def _recipes(args) -> int:
+    """Generate executable recipes from discovered projects."""
+    import glob
+
+    output_dir = args.output_dir
+    os.makedirs(output_dir, exist_ok=True)
+
+    all_recipes = []
+
+    # Find all projects.json files matching pattern
+    projects_files = glob.glob(args.projects)
+    if not projects_files:
+        print(f"No projects found matching {args.projects}", file=sys.stderr)
+        return 1
+
+    print(f"Generating recipes from {len(projects_files)} project catalog(s)...\n")
+
+    for projects_file in projects_files:
+        try:
+            with open(projects_file) as f:
+                projects = json.load(f)
+        except:
+            continue
+
+        if not isinstance(projects, list):
+            continue
+
+        # Generate recipes from these projects
+        recipes = recipe_generator.recipes_from_projects(projects)
+        all_recipes.extend(recipes)
+
+        print(f"✓ {projects_file}: generated {len(recipes)} recipes")
+
+    # Render and save recipes
+    os.makedirs(output_dir, exist_ok=True)
+
+    for recipe in all_recipes:
+        filename = f"{recipe.name}.md"
+        filepath = os.path.join(output_dir, filename)
+        with open(filepath, 'w') as f:
+            f.write(recipe_generator.render_recipe(recipe))
+
+    # Generate index
+    index_path = os.path.join(output_dir, "INDEX.md")
+    with open(index_path, 'w') as f:
+        f.write(recipe_generator.render_recipe_index(all_recipes))
+
+    print(f"\n✓ Generated {len(all_recipes)} total recipes")
+    print(f"✓ Index: {index_path}")
+    print(f"✓ Output: {output_dir}/")
+
+    return 0
+
 def _selftest() -> int:
     from .models import VERIFIED, UNKNOWN, SIMULATED, Candidate, Evidence
     from . import verify, dedupe
@@ -90,7 +150,7 @@ def _selftest() -> int:
 
     rec3 = verify.to_record(c2, "MCP", None, "MCP", from_fixture=True)
     assert rec3.verification.status == SIMULATED
-    
+
     print("✓ SELFTEST PASSED — anti-fabrication invariants hold.")
     return 0
 

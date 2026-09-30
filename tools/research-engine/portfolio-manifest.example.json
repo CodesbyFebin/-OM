@@ -1,0 +1,8 @@
+{
+  "repositories": [
+    {"name":"awesome-mcp-servers","type":"awesome","niche":"Model Context Protocol servers","pair":"mcp-cookbook","target":50},
+    {"name":"mcp-cookbook","type":"cookbook","niche":"Model Context Protocol","pair":"awesome-mcp-servers"},
+    {"name":"awesome-agent-skills","type":"awesome","niche":"agent skills","pair":"agent-skills-cookbook","target":50},
+    {"name":"agent-skills-cookbook","type":"cookbook","niche":"agent skills","pair":"awesome-agent-skills"}
+  ]
+}

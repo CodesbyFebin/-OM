@@ -4,7 +4,7 @@ def canonical_url(url: str) -> str:
     if not url: return ""
     p = urlparse(url)
     host = (p.netloc or "").lower().removeprefix("www.")
-    path = p.path.rstrip("/").removesuffix(".git")
+    path = p.path.rstrip("/").removesuffix(".git").lower()
     return f"https://{host}{path}" if host else url.lower()
 
 def dedupe(cands):

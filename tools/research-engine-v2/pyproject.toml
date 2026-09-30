@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dh-research-engine"
+version = "2.0.0"
+description = "Evidence-first research/curation engine. Stdlib-only. VERIFIED=observed via GitHub API. UNKNOWN preserved. 50=ceiling not quota."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Febin Francis", email = "codesbyfebin@gmail.com" }]
+keywords = ["awesome-lists", "curation", "github-api", "provenance", "evidence-first"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+dh-research = "dh_research.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

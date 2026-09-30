@@ -1,0 +1,749 @@
+{
+  "Agent Evaluation & Benchmarking": {
+    "definition": "A curated landscape of Agent Evaluation & Benchmarking.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "agent",
+          "evaluation",
+          "&",
+          "benchmarking"
+        ]
+      }
+    ],
+    "topics": [
+      "evaluation",
+      "benchmarking",
+      "testing",
+      "metrics",
+      "quality-assurance"
+    ]
+  },
+  "Agent Fine-Tuning & Optimization": {
+    "definition": "A curated landscape of Agent Fine-Tuning & Optimization.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "agent",
+          "fine-tuning",
+          "&",
+          "optimization"
+        ]
+      }
+    ],
+    "topics": [
+      "fine-tuning",
+      "rlhf",
+      "adaptation",
+      "training",
+      "optimization"
+    ]
+  },
+  "Agent Memory Systems": {
+    "definition": "A curated landscape of Agent Memory Systems.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "agent",
+          "memory",
+          "systems"
+        ]
+      }
+    ],
+    "topics": [
+      "agent-memory",
+      "knowledge-storage",
+      "context-management",
+      "persistence"
+    ]
+  },
+  "Agent Skills & Capabilities": {
+    "definition": "A curated landscape of Agent Skills & Capabilities.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "agent",
+          "skills",
+          "&",
+          "capabilities"
+        ]
+      }
+    ],
+    "topics": [
+      "agent-skills",
+      "ai-agents",
+      "reusable-patterns",
+      "automation",
+      "capabilities",
+      "composable"
+    ]
+  },
+  "Agentic DevOps & Automation": {
+    "definition": "A curated landscape of Agentic DevOps & Automation.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "agentic",
+          "devops",
+          "&",
+          "automation"
+        ]
+      }
+    ],
+    "topics": [
+      "agentic-devops",
+      "ai-infrastructure",
+      "devops",
+      "automation",
+      "deployment",
+      "operations"
+    ]
+  },
+  "Agentic RAG & Retrieval Systems": {
+    "definition": "A curated landscape of Agentic RAG & Retrieval Systems.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "agentic",
+          "rag",
+          "&",
+          "retrieval",
+          "systems"
+        ]
+      }
+    ],
+    "topics": [
+      "rag",
+      "retrieval-augmented-generation",
+      "vector-search",
+      "ai-agents",
+      "embeddings"
+    ]
+  },
+  "AI Agent Orchestration": {
+    "definition": "A curated landscape of AI Agent Orchestration.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "agent",
+          "orchestration"
+        ]
+      }
+    ],
+    "topics": [
+      "orchestration",
+      "workflow-engines",
+      "coordination",
+      "scheduling"
+    ]
+  },
+  "AI Compliance & Governance": {
+    "definition": "A curated landscape of AI Compliance & Governance.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "compliance",
+          "&",
+          "governance"
+        ]
+      }
+    ],
+    "topics": [
+      "compliance",
+      "gdpr",
+      "regulatory",
+      "governance",
+      "audit"
+    ]
+  },
+  "AI Cost Optimization": {
+    "definition": "A curated landscape of AI Cost Optimization.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "cost",
+          "optimization"
+        ]
+      }
+    ],
+    "topics": [
+      "cost-optimization",
+      "budget-management",
+      "efficiency",
+      "scaling"
+    ]
+  },
+  "AI Data Pipeline & ETL": {
+    "definition": "A curated landscape of AI Data Pipeline & ETL.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "data",
+          "pipeline",
+          "&",
+          "etl"
+        ]
+      }
+    ],
+    "topics": [
+      "data-pipeline",
+      "etl",
+      "data-quality",
+      "ingestion"
+    ]
+  },
+  "AI Deployment Patterns": {
+    "definition": "A curated landscape of AI Deployment Patterns.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "deployment",
+          "patterns"
+        ]
+      }
+    ],
+    "topics": [
+      "deployment-patterns",
+      "blue-green",
+      "canary",
+      "releases"
+    ]
+  },
+  "AI Economics & Pricing": {
+    "definition": "A curated landscape of AI Economics & Pricing.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "economics",
+          "&",
+          "pricing"
+        ]
+      }
+    ],
+    "topics": [
+      "ai-economics",
+      "pricing-models",
+      "cost-analysis",
+      "business-models"
+    ]
+  },
+  "AI Gateways & Request Routing": {
+    "definition": "A curated landscape of AI Gateways & Request Routing.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "gateways",
+          "&",
+          "request",
+          "routing"
+        ]
+      }
+    ],
+    "topics": [
+      "ai-gateway",
+      "routing",
+      "api-management",
+      "fallback",
+      "cost-control"
+    ]
+  },
+  "Human-AI Collaboration": {
+    "definition": "A curated landscape of Human-AI Collaboration.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "human-ai",
+          "collaboration"
+        ]
+      }
+    ],
+    "topics": [
+      "human-in-the-loop",
+      "collaboration",
+      "annotation",
+      "feedback"
+    ]
+  },
+  "AI Integration Patterns": {
+    "definition": "A curated landscape of AI Integration Patterns.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "integration",
+          "patterns"
+        ]
+      }
+    ],
+    "topics": [
+      "integration-patterns",
+      "apis",
+      "webhooks",
+      "event-driven"
+    ]
+  },
+  "AI Knowledge Systems & Graphs": {
+    "definition": "A curated landscape of AI Knowledge Systems & Graphs.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "knowledge",
+          "systems",
+          "&",
+          "graphs"
+        ]
+      }
+    ],
+    "topics": [
+      "knowledge-graphs",
+      "reasoning",
+      "semantic-search",
+      "representation"
+    ]
+  },
+  "Model Governance & Registry": {
+    "definition": "A curated landscape of Model Governance & Registry.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "model",
+          "governance",
+          "&",
+          "registry"
+        ]
+      }
+    ],
+    "topics": [
+      "model-governance",
+      "registry",
+      "versioning",
+      "deployment"
+    ]
+  },
+  "AI Monitoring & Alerting": {
+    "definition": "A curated landscape of AI Monitoring & Alerting.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "monitoring",
+          "&",
+          "alerting"
+        ]
+      }
+    ],
+    "topics": [
+      "monitoring",
+      "alerting",
+      "sla-tracking",
+      "incident-response"
+    ]
+  },
+  "AI Observability & Monitoring": {
+    "definition": "A curated landscape of AI Observability & Monitoring.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "observability",
+          "&",
+          "monitoring"
+        ]
+      }
+    ],
+    "topics": [
+      "observability",
+      "monitoring",
+      "telemetry",
+      "tracing",
+      "logging"
+    ]
+  },
+  "AI Platform Engineering": {
+    "definition": "A curated landscape of AI Platform Engineering.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "platform",
+          "engineering"
+        ]
+      }
+    ],
+    "topics": [
+      "platform-engineering",
+      "developer-platforms",
+      "abstractions",
+      "productivity"
+    ]
+  },
+  "AI Safety & Alignment": {
+    "definition": "A curated landscape of AI Safety & Alignment.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "safety",
+          "&",
+          "alignment"
+        ]
+      }
+    ],
+    "topics": [
+      "ai-safety",
+      "alignment",
+      "interpretability",
+      "robustness"
+    ]
+  },
+  "AI Security & Threat Modeling": {
+    "definition": "A curated landscape of AI Security & Threat Modeling.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "security",
+          "&",
+          "threat",
+          "modeling"
+        ]
+      }
+    ],
+    "topics": [
+      "ai-security",
+      "threat-modeling",
+      "adversarial-testing",
+      "supply-chain"
+    ]
+  },
+  "AI Testing Frameworks": {
+    "definition": "A curated landscape of AI Testing Frameworks.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "ai",
+          "testing",
+          "frameworks"
+        ]
+      }
+    ],
+    "topics": [
+      "testing",
+      "quality-assurance",
+      "chaos-engineering",
+      "validation"
+    ]
+  },
+  "Evidence-Driven Engineering": {
+    "definition": "A curated landscape of Evidence-Driven Engineering.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "evidence-driven",
+          "engineering"
+        ]
+      }
+    ],
+    "topics": [
+      "evidence",
+      "reproducibility",
+      "verification",
+      "scientific-computing"
+    ]
+  },
+  "Federated Learning & Privacy": {
+    "definition": "A curated landscape of Federated Learning & Privacy.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "federated",
+          "learning",
+          "&",
+          "privacy"
+        ]
+      }
+    ],
+    "topics": [
+      "federated-learning",
+      "distributed-training",
+      "privacy-preserving",
+      "machine-learning"
+    ]
+  },
+  "Kubernetes & Distributed AI": {
+    "definition": "A curated landscape of Kubernetes & Distributed AI.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "kubernetes",
+          "&",
+          "distributed",
+          "ai"
+        ]
+      }
+    ],
+    "topics": [
+      "kubernetes",
+      "ai-deployment",
+      "k8s",
+      "distributed",
+      "mlops"
+    ]
+  },
+  "Model Context Protocol Servers": {
+    "definition": "A curated landscape of Model Context Protocol Servers.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "model",
+          "context",
+          "protocol",
+          "servers"
+        ]
+      }
+    ],
+    "topics": [
+      "mcp",
+      "model-context-protocol",
+      "ai-agents",
+      "agent-infrastructure",
+      "server-development",
+      "ai-tools",
+      "integration"
+    ]
+  },
+  "Multi-Agent Systems & Orchestration": {
+    "definition": "A curated landscape of Multi-Agent Systems & Orchestration.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "multi-agent",
+          "systems",
+          "&",
+          "orchestration"
+        ]
+      }
+    ],
+    "topics": [
+      "multi-agent",
+      "orchestration",
+      "ai-agents",
+      "coordination",
+      "swarms",
+      "collaboration"
+    ]
+  },
+  "Multimodal AI Systems": {
+    "definition": "A curated landscape of Multimodal AI Systems.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "multimodal",
+          "ai",
+          "systems"
+        ]
+      }
+    ],
+    "topics": [
+      "multimodal",
+      "vision-language",
+      "cross-modal",
+      "integration"
+    ]
+  },
+  "Prompt Engineering Techniques": {
+    "definition": "A curated landscape of Prompt Engineering Techniques.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "prompt",
+          "engineering",
+          "techniques"
+        ]
+      }
+    ],
+    "topics": [
+      "prompt-engineering",
+      "llm-optimization",
+      "techniques",
+      "best-practices"
+    ]
+  },
+  "Real-Time AI & Low-Latency Inference": {
+    "definition": "A curated landscape of Real-Time AI & Low-Latency Inference.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "real-time",
+          "ai",
+          "&",
+          "low-latency",
+          "inference"
+        ]
+      }
+    ],
+    "topics": [
+      "real-time-ai",
+      "low-latency",
+      "streaming",
+      "edge-deployment"
+    ]
+  },
+  "Self-Hosted Cloud Platforms": {
+    "definition": "A curated landscape of Self-Hosted Cloud Platforms.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "self-hosted",
+          "cloud",
+          "platforms"
+        ]
+      }
+    ],
+    "topics": [
+      "self-hosted",
+      "sovereignty",
+      "on-premise",
+      "privacy",
+      "alternatives"
+    ]
+  },
+  "Sovereign AI & Self-Hosted Systems": {
+    "definition": "A curated landscape of Sovereign AI & Self-Hosted Systems.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "sovereign",
+          "ai",
+          "&",
+          "self-hosted",
+          "systems"
+        ]
+      }
+    ],
+    "topics": [
+      "sovereign-ai",
+      "self-hosted",
+      "data-ownership",
+      "privacy-first",
+      "on-premise"
+    ]
+  },
+  "Synthetic Data Generation": {
+    "definition": "A curated landscape of Synthetic Data Generation.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "synthetic",
+          "data",
+          "generation"
+        ]
+      }
+    ],
+    "topics": [
+      "synthetic-data",
+      "data-generation",
+      "augmentation",
+      "quality"
+    ]
+  },
+  "Verifiable AI & Proof Systems": {
+    "definition": "A curated landscape of Verifiable AI & Proof Systems.",
+    "synonyms": [],
+    "categories": [
+      {
+        "name": "General",
+        "keywords": [
+          "verifiable",
+          "ai",
+          "&",
+          "proof",
+          "systems"
+        ]
+      }
+    ],
+    "topics": [
+      "verifiable-ai",
+      "zero-knowledge",
+      "attestation",
+      "proof-systems",
+      "verification"
+    ]
+  }
+}

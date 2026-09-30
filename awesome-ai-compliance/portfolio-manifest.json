@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-compliance",
+      "niche": "AI Compliance & Governance",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "compliance-cookbook"
+    }
+  ]
+}

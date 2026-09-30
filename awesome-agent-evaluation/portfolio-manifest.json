@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-agent-evaluation",
+      "niche": "Agent Evaluation & Benchmarking",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "agent-evaluation-cookbook"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-platform-engineering",
+      "niche": "AI Platform Engineering",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-platform-engineering-cookbook"
+    }
+  ]
+}

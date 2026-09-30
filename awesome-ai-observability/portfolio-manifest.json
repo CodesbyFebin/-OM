@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-observability",
+      "niche": "AI Observability & Monitoring",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-observability-cookbook"
+    }
+  ]
+}

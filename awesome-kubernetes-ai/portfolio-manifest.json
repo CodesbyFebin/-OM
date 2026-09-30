@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-kubernetes-ai",
+      "niche": "Kubernetes & Distributed AI",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "kubernetes-ai-cookbook"
+    }
+  ]
+}

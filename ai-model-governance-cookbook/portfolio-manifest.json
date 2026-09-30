@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-model-governance-cookbook",
+      "niche": "Model Governance Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-model-governance"
+    }
+  ]
+}

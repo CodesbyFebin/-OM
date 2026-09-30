@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-sovereign-ai",
+      "niche": "Sovereign AI & Self-Hosted Systems",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "sovereign-ai-cookbook"
+    }
+  ]
+}

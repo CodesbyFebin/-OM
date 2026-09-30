@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-data-pipeline-cookbook",
+      "niche": "Data Pipeline Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-data-pipeline"
+    }
+  ]
+}

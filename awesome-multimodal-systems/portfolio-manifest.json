@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-multimodal-systems",
+      "niche": "Multimodal AI Systems",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "multimodal-cookbook"
+    }
+  ]
+}

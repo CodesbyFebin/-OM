@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-evidence-driven-engineering",
+      "niche": "Evidence-Driven Engineering",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "evidence-cookbook"
+    }
+  ]
+}

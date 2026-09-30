@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-testing-frameworks",
+      "niche": "AI Testing Frameworks",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-testing-cookbook"
+    }
+  ]
+}

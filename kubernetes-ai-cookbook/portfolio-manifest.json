@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "kubernetes-ai-cookbook",
+      "niche": "AI Deployment on Kubernetes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-kubernetes-ai"
+    }
+  ]
+}

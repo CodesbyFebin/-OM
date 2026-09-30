@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "self-hosted-cloud-cookbook",
+      "niche": "Self-Hosting Deployment Guides",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-self-hosted-cloud"
+    }
+  ]
+}

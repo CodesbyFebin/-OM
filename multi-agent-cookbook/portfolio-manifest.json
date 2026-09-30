@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "multi-agent-cookbook",
+      "niche": "Multi-Agent Implementation Patterns",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-multi-agent-systems"
+    }
+  ]
+}

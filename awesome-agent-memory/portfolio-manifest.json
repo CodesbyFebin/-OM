@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-agent-memory",
+      "niche": "Agent Memory Systems",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "agent-memory-cookbook"
+    }
+  ]
+}

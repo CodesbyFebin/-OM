@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-gateways",
+      "niche": "AI Gateways & Request Routing",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-gateway-cookbook"
+    }
+  ]
+}

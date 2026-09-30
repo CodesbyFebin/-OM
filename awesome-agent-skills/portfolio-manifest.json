@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-agent-skills",
+      "niche": "Agent Skills & Capabilities",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "agent-skills-cookbook"
+    }
+  ]
+}

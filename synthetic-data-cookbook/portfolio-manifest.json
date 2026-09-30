@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "synthetic-data-cookbook",
+      "niche": "Synthetic Data Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-synthetic-data"
+    }
+  ]
+}

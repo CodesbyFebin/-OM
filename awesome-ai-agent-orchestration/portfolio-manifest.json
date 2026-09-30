@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-agent-orchestration",
+      "niche": "AI Agent Orchestration",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-agent-orchestration-cookbook"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-self-hosted-cloud",
+      "niche": "Self-Hosted Cloud Platforms",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "self-hosted-cloud-cookbook"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-agentic-rag",
+      "niche": "Agentic RAG & Retrieval Systems",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "agentic-rag-cookbook"
+    }
+  ]
+}

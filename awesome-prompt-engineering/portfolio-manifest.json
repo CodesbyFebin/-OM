@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-prompt-engineering",
+      "niche": "Prompt Engineering Techniques",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "prompt-engineering-cookbook"
+    }
+  ]
+}

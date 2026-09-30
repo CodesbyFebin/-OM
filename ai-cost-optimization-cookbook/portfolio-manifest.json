@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-cost-optimization-cookbook",
+      "niche": "Cost Optimization Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-cost-optimization"
+    }
+  ]
+}

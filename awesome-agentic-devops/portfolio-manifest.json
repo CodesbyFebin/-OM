@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-agentic-devops",
+      "niche": "Agentic DevOps & Automation",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "agentic-devops-cookbook"
+    }
+  ]
+}

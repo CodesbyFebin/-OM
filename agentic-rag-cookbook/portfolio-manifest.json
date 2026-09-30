@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "agentic-rag-cookbook",
+      "niche": "Retrieval-Augmented Generation Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-agentic-rag"
+    }
+  ]
+}

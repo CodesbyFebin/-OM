@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-ai-economics",
+      "niche": "AI Economics & Pricing",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "ai-economics-cookbook"
+    }
+  ]
+}

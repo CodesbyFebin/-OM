@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "multimodal-cookbook",
+      "niche": "Multimodal Integration Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-multimodal-systems"
+    }
+  ]
+}

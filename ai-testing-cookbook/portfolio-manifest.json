@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "ai-testing-cookbook",
+      "niche": "Testing & QA Recipes",
+      "targetProjects": null,
+      "targetRecipes": 60,
+      "pair": "awesome-ai-testing-frameworks"
+    }
+  ]
+}

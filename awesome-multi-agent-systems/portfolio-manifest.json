@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "name": "awesome-multi-agent-systems",
+      "niche": "Multi-Agent Systems & Orchestration",
+      "targetProjects": 50,
+      "targetRecipes": null,
+      "pair": "multi-agent-cookbook"
+    }
+  ]
+}

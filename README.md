@@ -76,6 +76,38 @@
 
 ---
 
+## 📚 70-Repository Evidence-First Portfolio
+
+In addition to the OM personal AI universe, this repository hosts **dh-research-engine v2**, an evidence-first content factory deployed across 70 awesome-* and *-cookbook repositories.
+
+**See:** [PORTFOLIO-ARCHITECTURE.md](./PORTFOLIO-ARCHITECTURE.md) for details on:
+- Deployment model (pip-installable engine in 70 independent repos)
+- Architecture (per-repo portfolio-manifest.json + local catalog generation)
+- Verification states (VERIFIED via GitHub API observation only)
+- Quality gate rubric (100-point internal assessment)
+- CI/CD integration (weekly auto-refresh via GitHub Actions)
+
+**Quick start:** 
+```bash
+pip install dh-research-engine
+dh-research repo --repo awesome-agent-skills
+```
+
+**Tools:** [`tools/research-engine-v2/`](./tools/research-engine-v2/)
+- README.md — Architecture, installation, workflows
+- AGENTS.md — Non-negotiable contract (evidence-first curation)
+- DEPLOYMENT-70-REPOS.md — Full per-repository setup guide
+- QUICKSTART-SINGLE-REPO.md — 5-minute getting started
+
+**Core principles:**
+- VERIFIED = GitHub API observation (not claims)
+- UNKNOWN preserved (no fabrication)
+- 37 real projects > 50 invented
+- Evidence chain (checked_at + URL ledger)
+- Reproducible (same input → same output)
+
+---
+
 ## 📄 License & Contributing
 
 - **License**: [MIT License](./LICENSE)

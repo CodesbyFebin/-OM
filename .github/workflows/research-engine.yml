@@ -1,0 +1,28 @@
+name: Weekly Refresh
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update manifest
+        run: |
+          jq '.updated_at = now | strftime("%Y-%m-%dT%H:%M:%SZ")' \
+            portfolio-manifest.json > tmp.json && mv tmp.json portfolio-manifest.json
+          jq '.quality_metrics.last_audit = now | strftime("%Y-%m-%d")' \
+            portfolio-manifest.json > tmp.json && mv tmp.json portfolio-manifest.json
+      - name: Commit changes
+        run: |
+          git config user.name "Research Engine"
+          git config user.email "research@github.com"
+          git add portfolio-manifest.json
+          git commit -m "chore: weekly refresh" || true
+          git push || true
